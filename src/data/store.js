@@ -20,7 +20,7 @@ export const categories = [
     {
         id: "tech",
         title: "Tech Products",
-        image: "https://i.pinimg.com/736x/33/b7/33/33b7332effb4bff433041c279e66e10b.jpggit",
+        image: "https://i.pinimg.com/736x/33/b7/33/33b7332effb4bff433041c279e66e10b.jpg",
         description: "Latest gadgets and tech accessories.",
     },
 ];
