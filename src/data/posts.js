@@ -17,12 +17,26 @@ export const posts = [
                 text: "Space is vast and filled with wonders that defy our understanding. One of the most intriguing facts is about Venus. A day on Venus (one rotation on its axis) takes 243 Earth days, while a year on Venus (one orbit around the Sun) takes only 225 Earth days."
             },
             {
+                type: 'image',
+                src: "https://images.unsplash.com/photo-1614730341194-75c60740a2d3?q=80&w=1000&auto=format&fit=crop",
+                alt: "Venus Planet",
+                caption: "Venus, the second planet from the Sun."
+            },
+            {
+                type: 'ad'
+            },
+            {
                 type: 'subheading',
                 text: "Cosmic Scale"
             },
             {
                 type: 'paragraph',
                 text: "Another mind-blowing fact is that there are more stars in the universe than grains of sand on all the beaches on Earth. The observable universe is estimated to contain between 10^22 and 10^24 stars."
+            },
+            {
+                type: 'link',
+                text: "Read more about the Universe scale",
+                url: "https://nasa.gov"
             },
             {
                 type: 'list',
@@ -39,6 +53,10 @@ export const posts = [
                     "55 Cancri e is a “super-Earth” believed to contain diamond layers due to its carbon-rich composition and massive pressure."
                 ]
             }
+        ],
+        references: [
+            { text: "NASA - Venus Facts", url: "https://solarsystem.nasa.gov/planets/venus/overview/" },
+            { text: "National Geographic - Space", url: "https://www.nationalgeographic.com/science/space/" }
         ]
     },
     {
@@ -285,7 +303,15 @@ export const posts = [
                     "When a task feels boring, difficult, or uncertain, your brain tries to protect you by avoiding it. " +
                     "This temporary relief becomes a habit that keeps pulling you back."
             },
-
+            {
+                type: 'image',
+                src: "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?q=80&w=1000&auto=format&fit=crop",
+                alt: "Procrastination",
+                caption: "Don't let time slip away."
+            },
+            {
+                type: 'ad'
+            },
             {
                 type: 'subheading',
                 text: "Your Brain Chooses Comfort"
@@ -297,7 +323,11 @@ export const posts = [
                     "That’s why scrolling, watching videos, or chatting feels easier than starting a tough task. " +
                     "Understanding this helps you control it instead of fighting yourself blindly."
             },
-
+            {
+                type: 'link',
+                text: "Learn more about Procrastination Psychology",
+                url: "https://www.psychologytoday.com/us/basics/procrastination"
+            },
             {
                 type: 'list',
                 items: [
@@ -345,6 +375,10 @@ export const posts = [
                     "Momentum creates motivation, not the other way around. " +
                     "Once you begin, your brain naturally enters focus mode."
             }
+        ],
+        references: [
+            { text: "Psychology Today - Procrastination", url: "https://www.psychologytoday.com/us/basics/procrastination" },
+            { text: "James Clear - Procrastination", url: "https://jamesclear.com/procrastination" }
         ]
     }
 

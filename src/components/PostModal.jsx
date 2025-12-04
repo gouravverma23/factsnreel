@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { X } from 'lucide-react';
+import { X, ExternalLink } from 'lucide-react';
 
 const PostModal = ({ post, onClose }) => {
     useEffect(() => {
@@ -81,6 +81,31 @@ const PostModal = ({ post, onClose }) => {
                                         {block.text}
                                     </h4>
                                 );
+                            } else if (block.type === 'image') {
+                                return (
+                                    <figure key={index} className="my-6">
+                                        <img src={block.src} alt={block.alt} className="w-full rounded-xl shadow-lg" />
+                                        {block.caption && <figcaption className="text-center text-xs text-dark-muted mt-2 italic">{block.caption}</figcaption>}
+                                    </figure>
+                                );
+                            } else if (block.type === 'ad') {
+                                return (
+                                    <div key={index} className="my-6 p-6 bg-dark-bg/50 border border-dark-border border-dashed rounded-xl flex flex-col items-center justify-center text-dark-muted">
+                                        <span className="text-[10px] uppercase tracking-widest mb-2 opacity-50">Advertisement</span>
+                                        <div className="w-full h-24 bg-dark-surface rounded-lg flex items-center justify-center">
+                                            <span className="text-xs">Google Ad Space</span>
+                                        </div>
+                                    </div>
+                                );
+                            } else if (block.type === 'link') {
+                                return (
+                                    <a key={index} href={block.url} target="_blank" rel="noopener noreferrer" className="block my-4 p-4 bg-dark-surface border border-dark-border rounded-lg hover:border-dark-accent transition-all group">
+                                        <div className="flex items-center justify-between">
+                                            <span className="text-dark-accent font-medium text-sm group-hover:underline">{block.text}</span>
+                                            <ExternalLink size={14} className="text-dark-muted group-hover:text-dark-accent" />
+                                        </div>
+                                    </a>
+                                );
                             }
                             return null;
                         })}
@@ -95,6 +120,22 @@ const PostModal = ({ post, onClose }) => {
                                         </span>
                                     ))}
                                 </div>
+                            </div>
+                        )}
+
+                        {post.references && post.references.length > 0 && (
+                            <div className="mt-8 pt-6 border-t border-dark-border">
+                                <h4 className="text-white font-bold mb-3 text-sm uppercase tracking-wider">References</h4>
+                                <ul className="space-y-2">
+                                    {post.references.map((ref, index) => (
+                                        <li key={index}>
+                                            <a href={ref.url} target="_blank" rel="noopener noreferrer" className="text-xs text-dark-muted hover:text-dark-accent transition-colors flex items-center gap-2 group">
+                                                <ExternalLink size={10} className="group-hover:translate-x-0.5 transition-transform" />
+                                                {ref.text}
+                                            </a>
+                                        </li>
+                                    ))}
+                                </ul>
                             </div>
                         )}
                     </div>

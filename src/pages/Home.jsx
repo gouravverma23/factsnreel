@@ -9,10 +9,12 @@ import CategoryCard from '../components/CategoryCard';
 import ContactSection from '../components/ContactSection';
 import useScrollAnimation from '../hooks/useScrollAnimation';
 import PostModal from '../components/PostModal';
+import useModalBackHandler from '../hooks/useModalBackHandler';
 
 const Home = () => {
     const [selectedPost, setSelectedPost] = useState(null);
-    const recentPosts = posts.slice(0, 3);
+    const { openModal, closeModal } = useModalBackHandler(setSelectedPost);
+    const recentPosts = [...posts].reverse().slice(0, 3);
 
     const buttonClass = "inline-flex items-center gap-2 px-10 py-4 bg-dark-accent text-white font-bold rounded-full hover:bg-white hover:text-dark-accent hover:shadow-neon transition-all duration-300 group shadow-lg";
     const secondaryButtonClass = "inline-flex items-center gap-2 px-6 py-3 bg-dark-surface border border-dark-accent text-dark-accent font-bold rounded-full hover:bg-dark-accent hover:text-white hover:shadow-neon transition-all duration-300 group shadow-lg uppercase tracking-wider text-sm";
@@ -74,7 +76,7 @@ const Home = () => {
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {recentPosts.map(post => (
-                        <PostCard key={post.id} post={post} onClick={setSelectedPost} />
+                        <PostCard key={post.id} post={post} onClick={openModal} />
                     ))}
                 </div>
                 <div className="mt-8 text-center md:hidden">
@@ -112,7 +114,7 @@ const Home = () => {
 
             {/* Post Modal */}
             {selectedPost && (
-                <PostModal post={selectedPost} onClose={() => setSelectedPost(null)} />
+                <PostModal post={selectedPost} onClose={closeModal} />
             )}
         </div>
     );
