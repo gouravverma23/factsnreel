@@ -176,4 +176,177 @@ export const posts = [
             }
         ]
     },
+    {
+        id: 7,
+        title: "How to Learn Anything Faster",
+        image: "https://i.pinimg.com/736x/c6/de/95/c6de95d83a92f98e0095b9fa81d7c889.jpg",
+        description: "Smart, science-backed ways to learn faster, remember longer, and understand deeper.",
+        topic: "Learning",
+        subtopics: ["Brain Science", "Self-Improvement"],
+
+        content: [
+            {
+                type: 'heading',
+                text: "Unlock Faster Learning"
+            },
+            {
+                type: 'paragraph',
+                text:
+                    "Learning quickly isn’t about studying for long hours — it's about studying the right way. " +
+                    "Your brain forms memories through repetition, emotion, and active engagement. " +
+                    "Use these principles, and you can learn anything faster than before."
+            },
+
+            {
+                type: 'subheading',
+                text: "Active Learning Over Passive Watching"
+            },
+            {
+                type: 'paragraph',
+                text:
+                    "Most people read or watch videos and expect to remember. " +
+                    "But passive learning creates weak memory connections. " +
+                    "When you interact with the information — explain it, write it, or test yourself — the brain builds stronger pathways."
+            },
+
+            {
+                type: 'list',
+                items: [
+                    "Explain what you learned in simple words.",
+                    "Ask yourself questions instead of rereading.",
+                    "Convert lessons into small actionable steps."
+                ]
+            },
+
+            {
+                type: 'subheading',
+                text: "Train Your Brain with Spaced Practice"
+            },
+            {
+                type: 'paragraph',
+                text:
+                    "Cramming feels productive, but the brain forgets most of it. " +
+                    "Spaced repetition works with your natural memory cycle, strengthening recall every time you revisit the topic."
+            },
+
+            {
+                type: 'list',
+                items: [
+                    "Review after 24 hours.",
+                    "Review again after 3 days.",
+                    "Review again after a week."
+                ]
+            },
+
+            {
+                type: 'heading',
+                text: "Turn Knowledge Into Skill"
+            },
+            {
+                type: 'paragraph',
+                text:
+                    "Your brain learns faster when you apply information immediately. " +
+                    "Practice transforms theory into real understanding — and makes knowledge automatic."
+            },
+
+            {
+                type: 'subheading',
+                text: "Simple Habits That Boost Learning Speed"
+            },
+            {
+                type: 'list',
+                items: [
+                    "Study in 25–30 minute deep-focus blocks.",
+                    "Use handwritten notes to boost memory.",
+                    "Avoid multitasking — it breaks concentration.",
+                    "Sleep right after learning to lock in new memories.",
+                    "Use visuals and analogies to simplify complex topics."
+                ]
+            }
+        ]
+    },
+    {
+        id: 8,
+        title: "Why We Procrastinate & How to Beat It",
+        image: "https://i.pinimg.com/1200x/13/9f/c1/139fc1206d80a02a0fbc529dc6237cdf.jpg",
+        description: "Understand the real reason behind procrastination and learn simple habits to break it.",
+        topic: "Psychology",
+        subtopics: ["Behavior", "Self-Improvement"],
+
+        content: [
+            {
+                type: 'heading',
+                text: "The Real Reason We Procrastinate"
+            },
+            {
+                type: 'paragraph',
+                text:
+                    "Procrastination isn’t about laziness — it's a stress and emotion problem. " +
+                    "When a task feels boring, difficult, or uncertain, your brain tries to protect you by avoiding it. " +
+                    "This temporary relief becomes a habit that keeps pulling you back."
+            },
+
+            {
+                type: 'subheading',
+                text: "Your Brain Chooses Comfort"
+            },
+            {
+                type: 'paragraph',
+                text:
+                    "The brain prefers quick rewards over long-term gains. " +
+                    "That’s why scrolling, watching videos, or chatting feels easier than starting a tough task. " +
+                    "Understanding this helps you control it instead of fighting yourself blindly."
+            },
+
+            {
+                type: 'list',
+                items: [
+                    "Tasks with unclear steps feel harder.",
+                    "Fear of not doing it perfectly causes delay.",
+                    "Too much workload triggers shutdown.",
+                    "Low energy or boredom pushes you to distractions."
+                ]
+            },
+
+            {
+                type: 'heading',
+                text: "Break Procrastination with Simple Fixes"
+            },
+            {
+                type: 'paragraph',
+                text:
+                    "You don’t need big motivation — just small systems. " +
+                    "The trick is to make tasks feel lighter and easier to start."
+            },
+
+            {
+                type: 'subheading',
+                text: "Practical Ways to Beat It"
+            },
+            {
+                type: 'list',
+                items: [
+                    "Break the task into the smallest possible step.",
+                    "Use the 5-minute rule — commit to only five minutes.",
+                    "Remove distractions from your desk before you begin.",
+                    "Reward yourself after finishing small portions.",
+                    "Work in short focus blocks (25 minutes)."
+                ]
+            },
+
+            {
+                type: 'subheading',
+                text: "Shift Your Mindset"
+            },
+            {
+                type: 'paragraph',
+                text:
+                    "Don’t aim for perfect — aim to start. " +
+                    "Momentum creates motivation, not the other way around. " +
+                    "Once you begin, your brain naturally enters focus mode."
+            }
+        ]
+    }
+
+
 ];
