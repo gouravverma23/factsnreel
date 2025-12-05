@@ -37,7 +37,7 @@ const Home = () => {
                         Unveiling the unknown. Curating the exceptional.
                     </p>
                     <div className="animate-slide-up" style={{ animationDelay: '0.2s' }}>
-                        <Link to="/posts" className={buttonClass}>
+                        <Link to="/posts" state={{ fromExploreNow: true }} className={buttonClass}>
                             Explore Now <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
                         </Link>
                     </div>
