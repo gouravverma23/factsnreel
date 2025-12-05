@@ -1,5 +1,6 @@
 import useScrollAnimation from '../hooks/useScrollAnimation';
 import useActiveCard from '../hooks/useActiveCard';
+import { Layers } from 'lucide-react';
 
 const PostCard = ({ post, onClick }) => {
     const [scrollRef, isVisible] = useScrollAnimation();
@@ -31,6 +32,13 @@ const PostCard = ({ post, onClick }) => {
             {/* Overlay Gradient */}
             <div className={`absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent transition-opacity duration-300 
                 ${isActive ? 'opacity-90' : 'opacity-80 group-hover:opacity-90'}`} />
+
+            {/* Collection Indicator */}
+            {post.type === 'collection' && (
+                <div className="absolute top-4 right-4 bg-dark-accent/90 text-white p-2 rounded-full shadow-lg backdrop-blur-sm z-10">
+                    <Layers size={20} />
+                </div>
+            )}
 
             {/* Content */}
             <div className={`absolute inset-0 flex flex-col justify-end p-6 transition-transform duration-300 

@@ -592,7 +592,55 @@ export const posts = [
             { text: "Psychology Today - Procrastination", url: "https://www.psychologytoday.com/us/basics/procrastination" },
             { text: "James Clear - Procrastination", url: "https://jamesclear.com/procrastination" }
         ]
+    },
+    {
+        id: 9,
+        type: 'collection',
+        title: "The World of Cryptocurrency",
+        image: "https://i.pinimg.com/1200x/81/78/4e/81784e304f80f3f9801d17335717ea13.jpg",
+        description: "Dive into the revolution of digital money. A collection of insights on Bitcoin, Ethereum, and the future of finance.",
+        topic: "Finance",
+        subtopics: ["Crypto", "Blockchain", "Investing"],
+        subPosts: [
+            {
+                id: '9-1',
+                title: "What is Bitcoin?",
+                image: "https://images.unsplash.com/photo-1518546305927-5a555bb7020d?q=80&w=1000&auto=format&fit=crop",
+                description: "The first decentralized cryptocurrency. How it works and why it matters.",
+                topic: "Crypto",
+                subtopics: ["Bitcoin", "History"],
+                content: [
+                    { type: 'heading', text: "Digital Gold" },
+                    { type: 'paragraph', text: "Bitcoin was created in 2009 by an unknown person using the alias Satoshi Nakamoto. It offers the promise of lower transaction fees than traditional online payment mechanisms and is operated by a decentralized authority, unlike government-issued currencies." },
+                ],
+                references: []
+            },
+            {
+                id: '9-2',
+                title: "Understanding Blockchain",
+                image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?q=80&w=1000&auto=format&fit=crop",
+                description: "The technology behind crypto. A secure, transparent, and immutable ledger.",
+                topic: "Tech",
+                subtopics: ["Blockchain", "Security"],
+                content: [
+                    { type: 'heading', text: "The Chain of Blocks" },
+                    { type: 'paragraph', text: "Blockchain is a shared, immutable ledger that facilitates the process of recording transactions and tracking assets in a business network. An asset can be tangible (a house, car, cash, land) or intangible (intellectual property, patents, copyrights, branding)." }
+                ],
+                references: []
+            },
+            {
+                id: '9-3',
+                title: "Ethereum & Smart Contracts",
+                image: "https://i.pinimg.com/1200x/77/17/aa/7717aa5d07ada6d2e6361c5fb1be456c.jpg",
+                description: "More than just money. How Ethereum powers decentralized applications.",
+                topic: "Crypto",
+                subtopics: ["Ethereum", "DeFi"],
+                content: [
+                    { type: 'heading', text: "Programmable Money" },
+                    { type: 'paragraph', text: "Ethereum is a decentralized, open-source blockchain with smart contract functionality. Ether is the native cryptocurrency of the platform. Among cryptocurrencies, Ether is second only to Bitcoin in market capitalization." }
+                ],
+                references: []
+            }
+        ]
     }
-
-
 ];

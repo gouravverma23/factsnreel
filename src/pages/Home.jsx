@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { posts } from '../data/posts';
 import { categories } from '../data/store';
@@ -14,7 +14,17 @@ import useModalBackHandler from '../hooks/useModalBackHandler';
 const Home = () => {
     const [selectedPost, setSelectedPost] = useState(null);
     const { openModal, closeModal } = useModalBackHandler(setSelectedPost);
+    const navigate = useNavigate();
     const recentPosts = [...posts].reverse().slice(0, 3);
+
+    const handlePostClick = (post) => {
+        if (post.type === 'collection') {
+            navigate(`/posts/${post.id}`);
+            window.scrollTo(0, 0);
+        } else {
+            openModal(post);
+        }
+    };
 
     const buttonClass = "inline-flex items-center gap-2 px-10 py-4 bg-dark-accent text-white font-bold rounded-full hover:bg-white hover:text-dark-accent hover:shadow-neon transition-all duration-300 group shadow-lg";
     const secondaryButtonClass = "inline-flex items-center gap-2 px-6 py-3 bg-dark-surface border border-dark-accent text-dark-accent font-bold rounded-full hover:bg-dark-accent hover:text-white hover:shadow-neon transition-all duration-300 group shadow-lg uppercase tracking-wider text-sm";
@@ -76,7 +86,7 @@ const Home = () => {
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {recentPosts.map(post => (
-                        <PostCard key={post.id} post={post} onClick={openModal} />
+                        <PostCard key={post.id} post={post} onClick={handlePostClick} />
                     ))}
                 </div>
                 <div className="mt-8 text-center md:hidden">

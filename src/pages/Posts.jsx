@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams, useNavigate } from 'react-router-dom';
 import { Search } from 'lucide-react';
 import Fuse from 'fuse.js';
 import { posts } from '../data/posts';
@@ -10,30 +10,67 @@ import useModalBackHandler from '../hooks/useModalBackHandler';
 const Posts = () => {
     const [selectedPost, setSelectedPost] = useState(null);
     const { openModal, closeModal } = useModalBackHandler(setSelectedPost);
-    const scrollTargetRef = useRef(null);
     const [query, setQuery] = useState('');
     const [selectedTopic, setSelectedTopic] = useState('All');
+    const { collectionId } = useParams();
+    const navigate = useNavigate();
     const location = useLocation();
 
-    // Extract unique topics
-    const topics = useMemo(() => ['All', ...new Set(posts.map(post => post.topic))], []);
+    // Determine which posts to show (all posts or collection sub-posts)
+    const activeCollection = useMemo(() => {
+        if (collectionId) {
+            return posts.find(p => p.id === parseInt(collectionId));
+        }
+        return null;
+    }, [collectionId]);
+
+    const activePosts = useMemo(() => {
+        return activeCollection ? activeCollection.subPosts : posts;
+    }, [activeCollection]);
+
+    // Extract unique topics from active posts
+    const topics = useMemo(() => ['All', ...new Set(activePosts.map(post => post.topic))], [activePosts]);
+
+    // Flatten all posts for global search (including sub-posts)
+    const allSearchablePosts = useMemo(() => {
+        const flattened = [];
+        posts.forEach(post => {
+            flattened.push(post);
+            if (post.subPosts) {
+                flattened.push(...post.subPosts);
+            }
+        });
+        return flattened;
+    }, []);
 
     // Fuse.js configuration
-    const fuse = useMemo(() => new Fuse(posts, {
-        keys: ['title', 'description', 'topic', 'subtopics', 'content.text'],
+    // If inside a collection, search only that collection.
+    // If global (no collection), search ALL posts (including sub-posts).
+    const searchSource = useMemo(() => {
+        return activeCollection ? activeCollection.subPosts : allSearchablePosts;
+    }, [activeCollection, allSearchablePosts]);
+
+    const fuse = useMemo(() => new Fuse(searchSource, {
+        keys: ['title', 'description', 'topic', 'subtopics', 'content.text', 'type'],
         threshold: 0.3,
         includeScore: true
-    }), []);
+    }), [searchSource]);
 
     // Search results with filtering
     const searchResults = useMemo(() => {
-        let results = posts;
+        let results = activePosts;
 
         if (query) {
             results = fuse.search(query).map(result => result.item);
         } else {
-            // Default view: Sort by latest (reverse)
-            results = [...posts].reverse();
+            // Default view: 
+            // If it's a collection, show in increasing order (as defined).
+            // If it's the main list, sort by latest (reverse).
+            if (activeCollection) {
+                results = [...activePosts];
+            } else {
+                results = [...activePosts].reverse();
+            }
         }
 
         if (selectedTopic !== 'All') {
@@ -41,19 +78,31 @@ const Posts = () => {
         }
 
         return results;
-    }, [query, fuse, selectedTopic]);
+    }, [query, fuse, selectedTopic, activePosts]);
 
-    useEffect(() => {
-        // Scroll to the 4th post (index 3) on mount ONLY if not searching, no filter, AND not from "Explore Now"
-        if (!query && selectedTopic === 'All' && scrollTargetRef.current && !location.state?.fromExploreNow) {
-            scrollTargetRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    const handlePostClick = (post) => {
+        if (post.type === 'collection') {
+            navigate(`/posts/${post.id}`);
+            window.scrollTo(0, 0);
+        } else {
+            openModal(post);
         }
-    }, [query, selectedTopic, location.state]);
+    };
+
+    // Removed auto-scroll effect as per user request
 
     return (
         <div className="container mx-auto px-4 py-12 min-h-screen">
             <div className="max-w-2xl mx-auto mb-12 text-center">
-                <h1 className="text-4xl font-bold text-white mb-6">All <span className="text-dark-accent">Posts</span></h1>
+                <h1 className="text-4xl font-bold text-white mb-6">
+                    {activeCollection ? (
+                        <>
+                            <span className="text-dark-accent">{activeCollection.title}</span> Collection
+                        </>
+                    ) : (
+                        <>All <span className="text-dark-accent">Posts</span></>
+                    )}
+                </h1>
 
                 {/* Search Input */}
                 <div className="relative group mb-8">
@@ -89,8 +138,8 @@ const Posts = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {searchResults.length > 0 ? (
                     searchResults.map((post, index) => (
-                        <div key={post.id} ref={(!query && selectedTopic === 'All' && index === 3) ? scrollTargetRef : null}>
-                            <PostCard post={post} onClick={openModal} />
+                        <div key={post.id}>
+                            <PostCard post={post} onClick={handlePostClick} />
                         </div>
                     ))
                 ) : (
