@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useNavigate, useSearchParams, useLocation } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { posts } from '../data/posts';
 import { categories } from '../data/store';
@@ -9,16 +9,55 @@ import CategoryCard from '../components/CategoryCard';
 import ContactSection from '../components/ContactSection';
 import useScrollAnimation from '../hooks/useScrollAnimation';
 import PostModal from '../components/PostModal';
-import useModalBackHandler from '../hooks/useModalBackHandler';
 
 const Home = () => {
+    const [searchParams, setSearchParams] = useSearchParams();
     const [selectedPost, setSelectedPost] = useState(null);
-    const { openModal, closeModal } = useModalBackHandler(setSelectedPost);
     const navigate = useNavigate();
     const recentPosts = [...posts].reverse().slice(0, 3);
 
+    useEffect(() => {
+        const postId = searchParams.get('postId');
+        if (postId) {
+            // Check main posts
+            let foundPost = posts.find(p => String(p.id) === String(postId));
+
+            // Check subposts if not found
+            if (!foundPost) {
+                for (const post of posts) {
+                    if (post.subPosts) {
+                        const subPost = post.subPosts.find(sp => sp.id === postId || sp.id === parseInt(postId));
+                        if (subPost) {
+                            foundPost = subPost;
+                            break;
+                        }
+                    }
+                }
+            }
+            setSelectedPost(foundPost || null);
+        } else {
+            setSelectedPost(null);
+        }
+    }, [searchParams]);
+
+    const location = useLocation();
+
+    // ... (existing helper functions if any, but we are inside component)
+
+    const openModal = (post) => {
+        setSearchParams({ postId: post.id }, { state: { modal: true } });
+    };
+
+    const closeModal = () => {
+        if (location.state?.modal) {
+            navigate(-1);
+        } else {
+            setSearchParams({});
+        }
+    };
+
     const handlePostClick = (post) => {
-        if (post.type === 'collection') {
+        if (post.type === 'collection' || post.subPosts) {
             navigate(`/posts/${post.id}`);
             window.scrollTo(0, 0);
         } else {

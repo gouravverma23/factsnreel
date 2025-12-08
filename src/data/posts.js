@@ -18,7 +18,7 @@ export const posts = [
             },
             {
                 type: 'image',
-                src: "https://images.unsplash.com/photo-1614730341194-75c60740a2d3?q=80&w=1000&auto=format&fit=crop",
+                src: "https://image2url.com/images/1765205217688-6ebb24b3-4f85-4d04-8ce2-4df1c0172a69.jpg",
                 alt: "Venus Planet",
                 caption: "Venus, the second planet from the Sun."
             },
@@ -159,7 +159,7 @@ export const posts = [
             },
             {
                 "type": "image",
-                "src": "https://images.unsplash.com/photo-1549419163-f27329d4d9b4?fit=crop&w=800&q=80",
+                "src": "https://image2url.com/images/1765205100984-a59d8dc0-f393-4fb7-9df8-ad0d034eb528.jpg",
                 "alt": "A close-up of a vintage kitchen timer, representing the Pomodoro Technique.",
                 "caption": "The core of the Pomodoro method is the 25-minute focused interval."
             },
@@ -642,5 +642,564 @@ export const posts = [
                 references: []
             }
         ]
+    },
+    {
+        id: 10,
+        title: "Mastering the Art of Small Talk: How to Network and Connect",
+        image: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?fit=crop&w=800&q=80",
+        description: "Essential social tips for overcoming anxiety, initiating meaningful conversations, and leaving a positive first impression.",
+        topic: "Self Improvement",
+        subtopics: [
+            "Communication",
+            "Social Skills"
+        ],
+        content: [
+            {
+                type: "heading",
+                text: "The Real Value of Small Talk"
+            },
+            {
+                type: "paragraph",
+                text: "Small talk, often dismissed as superficial, is actually the **gateway to deeper professional and personal connections**. It's the critical first step in building rapport and trust, which is essential for networking events, job interviews, and social interactions. It signals approachability and social competence."
+            },
+            {
+                type: "image",
+                src: "https://image2url.com/images/1765204910104-84b68e0b-086c-46e1-88fa-95bd989f8fcf.jpg",
+                alt: "Two people engaged in a professional conversation at a social event.",
+                caption: "Effective small talk is about listening, not just talking."
+            },
+            {
+                type: "ad"
+            },
+            {
+                type: "subheading",
+                text: "Overcoming Conversation Anxiety"
+            },
+            {
+                type: "paragraph",
+                text: "The fear of awkward silences or saying the wrong thing can paralyze conversations. The best way to overcome this anxiety is through **preparation and practice**. Being ready with a few opening lines can significantly reduce this emotional barrier."
+            },
+            {
+                type: "link",
+                text: "Learn more about active listening skills",
+                url: "https://www.psychologytoday.com/active-listening"
+            },
+            {
+                type: "list",
+                items: [
+                    "**Prepare:** Have 2-3 'go-to' questions ready before attending an event.",
+                    "**Focus:** Remember the goal is dialogue, not a monologue.",
+                    "**Breathe:** Take a deep breath before approaching someone to calm your nerves.",
+                    "**Listen:** Focus on the other person's response to find conversational threads."
+                ]
+            },
+            {
+                type: "heading",
+                text: "Initiating a Meaningful Conversation"
+            },
+            {
+                type: "paragraph",
+                text: "Instead of relying on clichés like 'How's the weather?', use a simple framework to guide the conversation toward topics people genuinely enjoy discussing."
+            },
+            {
+                type: "subheading",
+                text: "The FORD Method"
+            },
+            {
+                type: "list",
+                items: [
+                    "**F**amily: Ask about siblings, kids, or pets.",
+                    "**O**ccupation: Ask what they enjoy most about their work, or a recent challenge.",
+                    "**R**ecreation: Ask about hobbies, weekend plans, or recent travels.",
+                    "**D**reams: Ask about future goals or exciting projects they are looking forward to."
+                ]
+            },
+            {
+                type: "subheading",
+                text: "Shift Your Mindset"
+            },
+            {
+                type: "paragraph",
+                text: "Don't aim for the perfect opening line—aim to be genuinely curious. **Curiosity creates connection**. Your goal is to make the other person feel seen and heard."
+            }
+        ],
+        references: [
+            {
+                text: "Harvard Business Review - The Science of Small Talk",
+                url: "https://hbr.org/2016/09/the-science-of-small-talk"
+            },
+            {
+                text: "Forbes - The FORD Method",
+                url: "https://www.forbes.com/sites/carminegallo/2016/08/17/the-4-questions-that-will-make-you-a-master-conversationalist/"
+            }
+        ]
+    },
+
+    {
+        id: 11,
+        type: 'collection',
+        title: "Human Psychology & Behavior",
+        image: "https://i.pinimg.com/736x/28/ee/1e/28ee1ef707b6d762a9815138328719f1.jpg",
+        description: "Explore the secrets of the human mind with powerful psychology insights that explain why we act, think, and feel.",
+        topic: "Psychology",
+        subtopics: ["Behavior", "Mindset", "Self-Improvement"],
+        subPosts: [
+
+            // 1. PROCRASTINATION
+            {
+                id: '11-1',
+                title: "Why We Procrastinate — And How to Beat It",
+                image: "https://images.unsplash.com/photo-1517433456452-f9633a875f6f?q=80&w=1200&auto=format&fit=crop",
+                description: "Your brain isn’t lazy — it’s protecting you. Understand the real reason behind procrastination.",
+                topic: "Psychology",
+                subtopics: ["Behavior", "Motivation"],
+                content: [
+                    { type: 'heading', text: "The Hidden Reason You Delay Tasks" },
+                    { type: 'paragraph', text: "Procrastination is an emotion-avoidance habit. Your brain avoids tasks that trigger stress, confusion, or fear of failure. Studies show that delaying work activates the brain's reward system when tasks are finally completed, giving a rush of relief but reinforcing the habit over time." },
+                    { type: 'image', src: "https://image2url.com/images/1765204290910-0b732c6e-0c1d-4943-8e57-e4ea88690e6d.jpg", alt: "Procrastination Concept", caption: "Your brain avoids discomfort to keep you safe." },
+                    { type: 'ad' },
+                    { type: 'subheading', text: "How to Beat It" },
+                    { type: 'paragraph', text: "Start with micro-actions. They trick your brain into momentum, reducing resistance instantly. Combining this with time-blocking and eliminating distractions creates a structured environment that supports habit change." },
+                    { type: 'link', text: "Learn more about productivity psychology", url: "https://www.psychologytoday.com/us/basics/procrastination" },
+                    {
+                        type: 'list', items: [
+                            "Use the 2-minute rule to break resistance.",
+                            "Clarify the first step — not the whole task.",
+                            "Reduce friction by preparing your workspace.",
+                            "Reward progress to create dopamine motivation.",
+                            "Break large tasks into 10-second actions."
+                        ]
+                    }
+                ],
+                references: [
+                    { text: "Steel, P. (2007). The nature of procrastination: A meta-analytic and theoretical review.", url: "https://doi.org/10.1037/0033-2909.133.1.65" },
+                    { text: "Sirois, F. M., & Pychyl, T. A. (2013). Procrastination and the priority of short-term mood regulation.", url: "https://doi.org/10.1111/spc3.12018" }
+                ]
+            },
+
+            // 2. OVERTHINKING
+            {
+                id: '11-2',
+                title: "Why You Overthink Everything — Psychology Explained",
+                image: "https://images.unsplash.com/photo-1502481851512-e9e2529bfbf9?q=80&w=1200&auto=format&fit=crop",
+                description: "Your brain creates imaginary scenarios to protect you — but ends up stressing you out.",
+                topic: "Mindset",
+                subtopics: ["Anxiety", "Cognition"],
+                content: [
+                    { type: 'heading', text: "Why Your Thoughts Spiral" },
+                    { type: 'paragraph', text: "Overthinking is your brain’s survival mechanism. It tries to predict danger, but ends up exaggerating problems. Research shows that chronic overthinkers have heightened activity in the amygdala, the brain’s fear center, making them prone to stress and indecision." },
+                    { type: 'image', src: "https://images.unsplash.com/photo-1517511620798-cec17d428bc0?q=80&w=1000&auto=format&fit=crop", alt: "Overthinking Mind", caption: "Your brain loves creating scenarios — even fake ones." },
+                    { type: 'ad' },
+                    { type: 'subheading', text: "Breaking the Overthinking Loop" },
+                    { type: 'paragraph', text: "Detaching from thoughts reduces anxiety. Cognitive-behavioral strategies, mindfulness meditation, and journaling help overthinkers gain perspective and interrupt harmful mental loops." },
+                    { type: 'link', text: "Read more about anxiety research", url: "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5579391/" },
+                    {
+                        type: 'list', items: [
+                            "Label your thoughts to reduce emotional power.",
+                            "Limit decisions to avoid mental overload.",
+                            "Use grounding techniques to return to the present.",
+                            "Challenge assumptions instead of believing them.",
+                            "Practice mental decluttering daily."
+                        ]
+                    }
+                ],
+                references: [
+                    { text: "Watkins, E. R. (2008). Constructive and unconstructive repetitive thought.", url: "https://doi.org/10.1037/0033-2909.134.2.163" },
+                    { text: "Nolen-Hoeksema, S. (2000). The role of rumination in depressive disorders.", url: "https://doi.org/10.1037/0021-843X.109.3.504" }
+                ]
+            },
+
+            // 3. RED FLAGS
+            {
+                id: '11-3',
+                title: "Why We Ignore Red Flags — Human Behavior Explained",
+                image: "https://images.unsplash.com/photo-1543269865-0a740d43b90c?q=80&w=1200&auto=format&fit=crop",
+                description: "We see what we want to see — not what’s real. Here’s why.",
+                topic: "Behavior",
+                subtopics: ["Relationships", "Bias"],
+                content: [
+                    { type: 'heading', text: "The Brain Filters What You Want to Believe" },
+                    { type: 'paragraph', text: "Emotional attachment makes you ignore negative signs because the brain hates discomfort. Cognitive biases, like confirmation bias, selectively filter information to align with your desires." },
+                    { type: 'image', src: "https://i.pinimg.com/1200x/53/b7/e8/53b7e8184e9996add07ab3637db8b5d6.jpg", alt: "Red Flag Psychology", caption: "Your emotional brain often overrules logic." },
+                    { type: 'ad' },
+                    { type: 'subheading', text: "Why Red Flags Go Unnoticed" },
+                    { type: 'paragraph', text: "Hope, fear of loneliness, and emotional investment alter your perception. People rationalize warning signs to preserve attachment or avoid conflict." },
+                    { type: 'link', text: "Read more on emotional bias", url: "https://www.verywellmind.com/confirmation-bias-2795024" },
+                    {
+                        type: 'list', items: [
+                            "Confirmation bias hides uncomfortable truths.",
+                            "Fear of being alone distorts judgment.",
+                            "Hope makes you believe they’ll change.",
+                            "Emotional investment clouds logic.",
+                            "Your brain avoids pain — even truth."
+                        ]
+                    }
+                ],
+                references: [
+                    { text: "Nickerson, R. S. (1998). Confirmation bias: A ubiquitous phenomenon.", url: "https://doi.org/10.1037/1089-2680.2.2.175" },
+                    { text: "Tversky, A., & Kahneman, D. (1974). Judgment under uncertainty: Heuristics and biases.", url: "https://doi.org/10.1126/science.185.4157.1124" }
+                ]
+            },
+
+            // 4. BODY LANGUAGE
+            {
+                id: '11-4',
+                title: "10 Body Language Signs People Reveal Without Words",
+                image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1200&auto=format&fit=crop",
+                description: "Nonverbal cues can reveal hidden thoughts and feelings.",
+                topic: "Behavior",
+                subtopics: ["Body Language", "Communication"],
+                content: [
+                    { type: 'heading', text: "The Secrets Your Body Tells" },
+                    { type: 'paragraph', text: "Body language communicates more than words. Micro-expressions, posture, and gestures convey true emotions and intentions, often subconsciously." },
+                    { type: 'image', src: "https://image2url.com/images/1765203607360-22fd1647-046a-4f55-8682-33f9c3eee982.jpg", alt: "Body Language Signs", caption: "Learn to read nonverbal cues for better insight." },
+                    { type: 'ad' },
+                    { type: 'subheading', text: "Key Non-Verbal Signals" },
+                    { type: 'paragraph', text: "Recognizing body language patterns helps understand intentions and emotions, improving communication and relationships." },
+                    { type: 'link', text: "Learn more about non-verbal cues", url: "https://www.verywellmind.com/reading-body-language-2795396" },
+                    {
+                        type: 'list', items: [
+                            "Dilated pupils show attraction or interest.",
+                            "Crossed arms signal emotional guarding.",
+                            "Leaning in indicates trust and curiosity.",
+                            "Fake smiles don’t reach the eyes.",
+                            "Foot direction shows true interest.",
+                            "Rapid blinking signals anxiety.",
+                            "Touching face indicates nervousness.",
+                            "Head tilting shows openness.",
+                            "Hands behind back show dominance.",
+                            "Micro-expressions reveal suppressed emotions."
+                        ]
+                    }
+                ],
+                references: [
+                    { text: "Ekman, P., & Friesen, W. V. (1969). Nonverbal leakage and clues to deception.", url: "https://doi.org/10.1037/h0035506" },
+                    { text: "Pease, A., & Pease, B. (2004). The definitive book of body language.", url: "https://www.amazon.com/Definitive-Book-Body-Language/dp/0553804723" }
+                ]
+            },
+
+            // 5. SOCIAL ANXIETY
+            {
+                id: '11-5',
+                title: "Why Social Anxiety Happens — And How to Fix It",
+                image: "https://images.unsplash.com/photo-1508780709619-79562169bc64?q=80&w=1200&auto=format&fit=crop",
+                description: "Your brain is not broken — it's overprotective.",
+                topic: "Mental Health",
+                subtopics: ["Anxiety", "Social Behavior"],
+                content: [
+                    { type: 'heading', text: "Your Brain Thinks People Are a Threat" },
+                    { type: 'paragraph', text: "Social anxiety stems from fear of judgment, rejection, or embarrassing yourself in public. The amygdala overreacts to social cues, signaling danger even in safe environments." },
+                    { type: 'image', src: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1000&auto=format&fit=crop", alt: "Social Anxiety Psychology", caption: "The brain exaggerates social threats." },
+                    { type: 'ad' },
+                    { type: 'subheading', text: "Fixing Social Anxiety" },
+                    { type: 'paragraph', text: "Exposure and self-acceptance reduce anxiety by retraining your brain. Mindfulness and gradual social challenges help desensitize threat perception." },
+                    { type: 'link', text: "Learn more about social anxiety", url: "https://www.psychologytoday.com/us/conditions/social-anxiety-disorder" },
+                    {
+                        type: 'list', items: [
+                            "Challenge negative assumptions.",
+                            "Observe your social fears without reacting.",
+                            "Use graded exposure to ease discomfort.",
+                            "Practice self-compassion instead of criticism.",
+                            "Shift focus from yourself to others."
+                        ]
+                    }
+                ],
+                references: [
+                    { text: "Heimberg, R. G., & Becker, R. E. (2002). Cognitive-behavioral group therapy for social phobia.", url: "https://www.guilford.com/books/Cognitive-Behavioral-Group-Therapy-for-Social-Phobia/Heimberg-Becker/9781572309151" },
+                    { text: "Stein, M. B., & Stein, D. J. (2008). Social anxiety disorder.", url: "https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(08)60488-2/fulltext" }
+                ]
+            },
+
+            // 6. DARK PSYCHOLOGY
+            {
+                id: '11-6',
+                title: "The Dark Psychology Tricks People Use Without Realizing",
+                image: "https://image2url.com/images/1765202593812-2829b085-9c3a-4b8f-8199-1db2a01c8719.jpg",
+                description: "People manipulate, persuade, and influence — often unconsciously.",
+                topic: "Dark Psychology",
+                subtopics: ["Influence", "Manipulation"],
+                content: [
+                    { type: 'heading', text: "The Subtle Ways People Influence You" },
+                    { type: 'paragraph', text: "Dark psychology isn’t always evil — sometimes it’s instinctual behavior used to gain advantage. Social engineering, manipulation, and persuasion tactics exploit unconscious biases." },
+                    { type: 'image', src: "https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=1000&auto=format&fit=crop", alt: "Dark Psychology", caption: "People influence others more than they realize." },
+                    { type: 'ad' },
+                    { type: 'subheading', text: "Common Manipulation Patterns" },
+                    { type: 'paragraph', text: "People use psychological triggers without even knowing it. Recognizing manipulation patterns helps maintain personal boundaries and critical thinking." },
+                    { type: 'link', text: "Learn about human influence patterns", url: "https://www.verywellmind.com/psychological-manipulation-2795270" },
+                    {
+                        type: 'list', items: [
+                            "Guilt-tripping to force compliance.",
+                            "Using silence to create pressure.",
+                            "Playing victim for emotional advantage.",
+                            "Love-bombing to gain trust quickly.",
+                            "Passive-aggressive behavior for control.",
+                            "Gaslighting to distort reality.",
+                            "Appearing confident to gain authority.",
+                            "Using flattery to disarm people.",
+                            "Mirroring to build trust.",
+                            "Creating urgency to push decisions."
+                        ]
+                    }
+                ],
+                references: [
+                    { text: "Cialdini, R. B. (2001). Influence: Science and practice.", url: "https://www.amazon.com/Influence-Science-Practice-Robert-Cialdini/dp/0205609996" },
+                    { text: "Dawson, L. (2016). The psychology of manipulation.", url: "https://doi.org/10.1037/apl0000085" }
+                ]
+            },
+
+            // 7. LEARNING FASTER
+            {
+                id: '11-7',
+                title: "How to Learn Anything 2x Faster — Neuroscience Tricks",
+                image: "https://image2url.com/images/1765202659960-6813a99c-cfcb-4d9d-88ca-467b40d69070.jpg",
+                description: "Use your brain’s natural patterns to accelerate learning.",
+                topic: "Self-Improvement",
+                subtopics: ["Learning", "Neuroscience"],
+                content: [
+                    { type: 'heading', text: "Leverage Spaced Repetition" },
+                    { type: 'paragraph', text: "Research shows that spacing learning over time improves retention. Your brain strengthens connections better when concepts are revisited gradually rather than crammed." },
+                    { type: 'image', src: "https://image2url.com/images/1765203786022-128ee726-b4d1-4b98-bdc1-15addf3ad5f4.jpg", alt: "Learning Faster", caption: "Use smart study techniques to learn faster." },
+                    { type: 'ad' },
+                    { type: 'subheading', text: "Other Brain Hacks" },
+                    { type: 'paragraph', text: "Active recall, visualization, and teaching others are powerful techniques. Sleep and exercise also consolidate memory and improve problem-solving." },
+                    { type: 'link', text: "Read more on neuroscience of learning", url: "https://www.sciencedirect.com/science/article/pii/S1364661316301399" },
+                    {
+                        type: 'list', items: [
+                            "Use flashcards for active recall.",
+                            "Teach someone what you learned.",
+                            "Sleep at least 7–8 hours for memory consolidation.",
+                            "Practice spaced repetition daily.",
+                            "Exercise to improve brain plasticity."
+                        ]
+                    }
+                ],
+                references: [
+                    { text: "Kang, S. H. K. (2016). Spaced repetition in learning.", url: "https://doi.org/10.1016/j.tics.2016.02.010" },
+                    { text: "Roediger, H. L., & Butler, A. C. (2011). The critical role of retrieval practice.", url: "https://doi.org/10.1016/j.tics.2011.09.003" }
+                ]
+            },
+
+            // 8. EMOTIONAL INTELLIGENCE
+            {
+                id: '11-8',
+                title: "How Emotional Intelligence Shapes Your Success",
+                image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1200&auto=format&fit=crop",
+                description: "Master your emotions to master your life.",
+                topic: "Psychology",
+                subtopics: ["Emotions", "Success"],
+                content: [
+                    { type: 'heading', text: "The Power of EQ" },
+                    { type: 'paragraph', text: "Emotional intelligence is the ability to understand and manage your own emotions, as well as recognize and influence others'. Studies show that EQ predicts success more than IQ in leadership roles." },
+                    { type: 'image', src: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1000&auto=format&fit=crop", alt: "Emotional Intelligence", caption: "EQ helps navigate social and professional situations." },
+                    { type: 'ad' },
+                    { type: 'subheading', text: "Developing Emotional Intelligence" },
+                    { type: 'paragraph', text: "Self-awareness, empathy, and social skills are the pillars of EQ. Daily reflection and mindful interaction strengthen these abilities." },
+                    { type: 'link', text: "Learn more about emotional intelligence", url: "https://www.psychologytoday.com/us/basics/emotional-intelligence" },
+                    {
+                        type: 'list', items: [
+                            "Practice self-reflection.",
+                            "Listen actively without judgment.",
+                            "Manage stress and impulses.",
+                            "Recognize others’ emotions.",
+                            "Respond instead of reacting."
+                        ]
+                    }
+                ],
+                references: [
+                    { text: "Goleman, D. (1995). Emotional Intelligence.", url: "https://www.amazon.com/Emotional-Intelligence-Matter-More-Than/dp/055338371X" },
+                    { text: "Mayer, J. D., Salovey, P., & Caruso, D. (2004). Emotional intelligence: Theory, findings, and implications.", url: "https://doi.org/10.1016/j.biopsycho.2003.11.002" }
+                ]
+            },
+
+            // 9. HABIT FORMATION
+            {
+                id: '11-9',
+                title: "The Psychology of Habit Formation — How to Make Good Habits Stick",
+                image: "https://images.unsplash.com/photo-1515191107209-c28698631303?q=80&w=1200&auto=format&fit=crop",
+                description: "Your habits define your future. Learn how your brain forms and maintains them.",
+                topic: "Behavior",
+                subtopics: ["Habits", "Self-Improvement"],
+                content: [
+                    { type: 'heading', text: "The Habit Loop" },
+                    { type: 'paragraph', text: "Habits are formed through a loop: cue, routine, and reward. Repeating a behavior with positive reinforcement creates automatic neural pathways in the brain." },
+                    { type: 'image', src: "https://image2url.com/images/1765204133074-19645bfe-15cc-48bb-8d3f-9c22befd672e.jpg", alt: "Habit Formation", caption: "Understanding the habit loop is key to change." },
+                    { type: 'ad' },
+                    { type: 'subheading', text: "Making Good Habits Stick" },
+                    { type: 'paragraph', text: "Focus on small, incremental changes. Use environmental cues, rewards, and accountability to reinforce new behaviors." },
+                    { type: 'link', text: "Learn more about habit psychology", url: "https://jamesclear.com/habits" },
+                    {
+                        type: 'list', items: [
+                            "Start with tiny habits.",
+                            "Pair new habits with existing routines.",
+                            "Reward progress consistently.",
+                            "Track your behavior for accountability.",
+                            "Adjust environment to reduce friction."
+                        ]
+                    }
+                ],
+                references: [
+                    { text: "Duhigg, C. (2012). The Power of Habit.", url: "https://www.amazon.com/Power-Habit-What-Life-Business/dp/081298160X" },
+                    { text: "Lally, P., van Jaarsveld, C. H., Potts, H. W., & Wardle, J. (2010). How habits form.", url: "https://doi.org/10.1371/journal.pone.0011393" }
+                ]
+            },
+
+            // 10. THE FUTURE OF AI & HUMAN PSYCHOLOGY
+            {
+                id: '11-10',
+                title: "How AI is Changing Human Behavior and Decision Making",
+                image: "https://image2url.com/images/1765202794126-3a8075aa-3770-4425-9059-f89a4b6db56f.jpg",
+                description: "Artificial Intelligence is reshaping how we think, decide, and behave.",
+                topic: ["Psychology","Technology"],
+                subtopics: ["AI", "Behavior", "Decision Making"],
+                content: [
+                    { type: 'heading', text: "The AI Influence on Human Minds" },
+                    { type: 'paragraph', text: "AI algorithms shape our decisions every day — from personalized recommendations to predictive analytics. Understanding these influences is crucial to maintaining autonomy and making conscious choices." },
+                    { type: 'image', src: "https://image2url.com/images/1765203962566-87b0c31f-fabe-4a88-9312-39a97df2b415.jpg", alt: "AI and Human Behavior", caption: "AI subtly influences choices in daily life." },
+                    { type: 'ad' },
+                    { type: 'subheading', text: "Navigating the AI Era" },
+                    { type: 'paragraph', text: "Being aware of AI’s role in decision-making allows humans to critically evaluate information, avoid biases, and leverage technology without losing self-determination." },
+                    { type: 'link', text: "Learn more about AI psychology", url: "https://www.frontiersin.org/articles/10.3389/fpsyg.2020.01297/full" },
+                    {
+                        type: 'list', items: [
+                            "AI influences attention and preference.",
+                            "Social media algorithms shape perceptions.",
+                            "Recommendation engines affect decisions.",
+                            "Automation changes cognitive effort.",
+                            "Awareness helps maintain independent thinking."
+                        ]
+                    }
+                ],
+                references: [
+                    { text: "Shneiderman, B. (2020). Human-centered AI.", url: "https://www.springer.com/gp/book/9783030333740" },
+                    { text: "Huang, M.-H., & Rust, R. T. (2021). AI in service.", url: "https://doi.org/10.1007/s11747-020-00715-2" }
+                ]
+            }
+        ]
+    },
+    {
+        id: 12,
+        title: "The Art of Storytelling: Why We Need Stories",
+        image: "https://i.pinimg.com/736x/f2/3b/29/f23b299899b03a30718de7160d29d180.jpg",
+        description: "Stories are more than just entertainment; they are **fundamental to human connection**. Learn how to craft compelling narratives that captivate your audience.",
+        topic: "Culture",
+        subtopics: ["Communication", "History", "Writing"],
+        content: [
+            {
+                type: "heading",
+                text: "The Power of Narrative"
+            },
+            {
+                type: "paragraph",
+                text: "Since the dawn of time, humans have shared stories around campfires. It’s how we **preserve knowledge**, **teach lessons**, and **build empathy**. A good story doesn't just convey facts; it makes the audience *feel* something."
+            },
+            {
+                type: "image",
+                src: "https://images.unsplash.com/photo-1532012197267-da84d127e765?fit=crop&w=800&q=80",
+                alt: "Open book with glowing lights, symbolizing the magic of storytelling.",
+                caption: "Stories light up our imagination."
+            },
+            {
+                type: "subheading",
+                text: "Elements of a Great Story"
+            },
+            {
+                type: "list",
+                items: [
+                    "**Character:** Someone the audience can root for.",
+                    "**Conflict:** A challenge or obstacle that must be overcome.",
+                    "**Resolution:** The change or lesson learned at the end.",
+                    "**Emotion:** The secret sauce that makes it memorable."
+                ]
+            },
+            {
+                type: "paragraph",
+                text: "Whether you are a marketer, a teacher, or just chatting with friends, mastering storytelling can **transform your communication skills**. It turns dry information into an experience."
+            }
+        ],
+        references: [
+            {
+                text: "Pixar's Rules of Storytelling",
+                url: "https://www.aerogrammestudio.com/2013/03/07/pixars-22-rules-of-storytelling/"
+            }
+        ]
+    },
+    {
+        id: 13,
+        title: "Minimalism: How Less Can Actually Be More",
+        image: "https://images.unsplash.com/photo-1505691938895-1758d7feb511?q=80&w=1000&auto=format&fit=crop",
+        description: "Discover the power of minimalism and how simplifying your life can boost happiness, productivity, and focus.",
+        topic: ["Lifestyle","Self-Improvement"],
+        subtopics: ["Minimalism", "Productivity", "Mindset"],
+        content: [
+            {
+                type: 'heading',
+                text: "What is Minimalism?"
+            },
+            {
+                type: 'paragraph',
+                text: "Minimalism is more than just a design trend — it’s a lifestyle philosophy that encourages intentional living. By focusing on what truly matters and removing excess, minimalism can help reduce stress and increase clarity."
+            },
+            {
+                type: 'image',
+                src: "https://image2url.com/images/1765204470282-b9db95c9-f91b-480f-92aa-a7134a1bc9b0.jpg",
+                alt: "Minimalist Workspace",
+                caption: "A clean, clutter-free workspace can enhance focus and creativity."
+            },
+            {
+                type: 'subheading',
+                text: "The Benefits of Minimalism"
+            },
+            {
+                type: 'list',
+                items: [
+                    "Less clutter leads to a clearer mind and reduced stress.",
+                    "Focusing on essentials improves productivity and decision-making.",
+                    "Saves money by encouraging mindful purchases.",
+                    "Improves relationships by emphasizing quality over quantity.",
+                    "Enhances creativity by giving space for ideas to grow."
+                ]
+            },
+            {
+                type: 'paragraph',
+                text: "Minimalism isn’t about deprivation — it’s about making room for what truly adds value to your life."
+            },
+            {
+                type: 'ad'
+            },
+            {
+                type: 'subheading',
+                text: "How to Start Living Minimally"
+            },
+            {
+                type: 'list',
+                items: [
+                    "Declutter one area at a time: Start small with your desk or wardrobe.",
+                    "Evaluate purchases: Ask yourself if it truly adds value before buying.",
+                    "Digital minimalism: Reduce screen time and organize your digital space.",
+                    "Focus on experiences over things: Prioritize moments over possessions.",
+                    "Set clear priorities: Identify what’s truly important in your life."
+                ]
+            },
+            {
+                type: 'paragraph',
+                text: "By gradually adopting minimalist habits, you can create a life that’s simpler, more meaningful, and less overwhelming."
+            },
+            {
+                type: 'link',
+                text: "Read more about minimalism and lifestyle design",
+                url: "https://www.becomingminimalist.com/what-is-minimalism/"
+            },
+            {
+                type: 'image',
+                src: "https://image2url.com/images/1765204748543-b1e03b06-5235-4a35-96c5-8ebb3885a5f5.jpg",
+                alt: "Minimalist Living",
+                caption: "Minimalism is about creating space for what truly matters."
+            }
+        ],
+        references: [
+            { text: "Becoming Minimalist - What is Minimalism?", url: "https://www.becomingminimalist.com/what-is-minimalism/" },
+            { text: "The Minimalists - Minimalism Defined", url: "https://www.theminimalists.com/minimalism/" }
+        ]
     }
+
 ];

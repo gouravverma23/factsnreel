@@ -1,7 +1,10 @@
 import { useEffect } from 'react';
 import { X, ExternalLink } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const PostModal = ({ post, onClose }) => {
+    const navigate = useNavigate();
+
     useEffect(() => {
         const handleEsc = (e) => {
             if (e.key === 'Escape') onClose();
@@ -13,6 +16,29 @@ const PostModal = ({ post, onClose }) => {
             document.body.style.overflow = 'unset';
         };
     }, [onClose]);
+
+    // Helper function to process text with simple markdown-like syntax
+    const formatText = (text) => {
+        if (!text) return null;
+        // Split by **text** pattern
+        const parts = text.split(/(\*\*.*?\*\*)/g);
+        return parts.map((part, index) => {
+            if (part.startsWith('**') && part.endsWith('**')) {
+                return <strong key={index} className="text-white font-semibold">{part.slice(2, -2)}</strong>;
+            }
+            return part;
+        });
+    };
+
+    const handleViewMore = () => {
+        if (post.topic) {
+            const topicToUse = Array.isArray(post.topic) ? post.topic[0] : post.topic;
+            navigate(`/posts?topic=${encodeURIComponent(topicToUse)}`);
+            window.scrollTo(0, 0);
+        } else {
+            navigate('/posts');
+        }
+    };
 
     if (!post) return null;
 
@@ -43,29 +69,39 @@ const PostModal = ({ post, onClose }) => {
                 <div className="w-full md:w-1/2 p-8 flex flex-col">
                     <div className="mb-2">
                         {post.topic && (
-                            <span className="inline-block px-3 py-1 text-xs font-bold text-dark-accent bg-dark-accent/10 rounded-full mb-2">
-                                {post.topic}
-                            </span>
+                            Array.isArray(post.topic) ? (
+                                <div className="flex flex-wrap gap-2 mb-2">
+                                    {post.topic.map((t, i) => (
+                                        <span key={i} className="inline-block px-3 py-1 text-xs font-bold text-dark-accent bg-dark-accent/10 rounded-full">
+                                            {t}
+                                        </span>
+                                    ))}
+                                </div>
+                            ) : (
+                                <span className="inline-block px-3 py-1 text-xs font-bold text-dark-accent bg-dark-accent/10 rounded-full mb-2">
+                                    {post.topic}
+                                </span>
+                            )
                         )}
                     </div>
                     <h2 className="text-3xl font-bold text-white mb-4">{post.title}</h2>
                     <div className="w-16 h-1 bg-dark-accent mb-6 rounded-full" />
 
                     <div className="prose prose-invert max-w-none text-gray-300 flex-grow overflow-y-auto pr-2 custom-scrollbar">
-                        <p className="text-lg leading-relaxed font-medium mb-4">{post.description}</p>
+                        <p className="text-lg leading-relaxed font-medium mb-4">{formatText(post.description)}</p>
 
                         {post.content && post.content.map((block, index) => {
                             if (block.type === 'paragraph') {
                                 return (
                                     <p key={index} className="mb-4 text-sm leading-relaxed text-dark-muted">
-                                        {block.text}
+                                        {formatText(block.text)}
                                     </p>
                                 );
                             } else if (block.type === 'list') {
                                 return (
                                     <ul key={index} className="list-disc list-inside space-y-2 mb-4 text-sm text-dark-muted">
                                         {block.items.map((item, itemIndex) => (
-                                            <li key={itemIndex}>{item}</li>
+                                            <li key={itemIndex}>{formatText(item)}</li>
                                         ))}
                                     </ul>
                                 );
@@ -141,7 +177,10 @@ const PostModal = ({ post, onClose }) => {
                     </div>
 
                     <div className="mt-8 pt-6 border-t border-dark-border flex flex-col gap-4">
-                        <button className="w-full py-3 bg-dark-accent text-white font-bold rounded-lg hover:bg-white hover:text-dark-accent hover:shadow-neon transition-all duration-300">
+                        <button
+                            onClick={handleViewMore}
+                            className="w-full py-3 bg-dark-accent text-white font-bold rounded-lg hover:bg-white hover:text-dark-accent hover:shadow-neon transition-all duration-300"
+                        >
                             view more
                         </button>
 

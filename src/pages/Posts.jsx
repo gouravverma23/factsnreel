@@ -1,20 +1,67 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
-import { useLocation, useParams, useNavigate } from 'react-router-dom';
+import { useLocation, useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import { Search } from 'lucide-react';
 import Fuse from 'fuse.js';
 import { posts } from '../data/posts';
 import PostCard from '../components/PostCard';
 import PostModal from '../components/PostModal';
-import useModalBackHandler from '../hooks/useModalBackHandler';
 
 const Posts = () => {
+    const [searchParams, setSearchParams] = useSearchParams();
     const [selectedPost, setSelectedPost] = useState(null);
-    const { openModal, closeModal } = useModalBackHandler(setSelectedPost);
     const [query, setQuery] = useState('');
     const [selectedTopic, setSelectedTopic] = useState('All');
     const { collectionId } = useParams();
     const navigate = useNavigate();
     const location = useLocation();
+
+    useEffect(() => {
+        const postId = searchParams.get('postId');
+        const topicParam = searchParams.get('topic');
+
+        // Handle Topic Selection from URL
+        if (topicParam) {
+            setSelectedTopic(topicParam);
+        } else {
+            setSelectedTopic('All');
+        }
+
+        // Handle Post Selection from URL
+        if (postId) {
+            // Check main posts
+            let foundPost = posts.find(p => String(p.id) === String(postId));
+
+            // Check subposts if not found
+            if (!foundPost) {
+                for (const post of posts) {
+                    if (post.subPosts) {
+                        const subPost = post.subPosts.find(sp => sp.id === postId || sp.id === parseInt(postId));
+                        if (subPost) {
+                            foundPost = subPost;
+                            break;
+                        }
+                    }
+                }
+            }
+            setSelectedPost(foundPost || null);
+        } else {
+            setSelectedPost(null);
+        }
+    }, [searchParams]);
+
+    const openModal = (post) => {
+        setSearchParams({ ...Object.fromEntries(searchParams), postId: post.id }, { state: { modal: true } });
+    };
+
+    const closeModal = () => {
+        if (location.state?.modal) {
+            navigate(-1);
+        } else {
+            const newParams = new URLSearchParams(searchParams);
+            newParams.delete('postId');
+            setSearchParams(newParams);
+        }
+    };
 
     // Determine which posts to show (all posts or collection sub-posts)
     const activeCollection = useMemo(() => {
@@ -29,7 +76,15 @@ const Posts = () => {
     }, [activeCollection]);
 
     // Extract unique topics from active posts
-    const topics = useMemo(() => ['All', ...new Set(activePosts.map(post => post.topic))], [activePosts]);
+    const topics = useMemo(() => {
+        const allTopics = activePosts.map(post => {
+            if (Array.isArray(post.topic)) {
+                return post.topic;
+            }
+            return post.topic;
+        }).flat();
+        return ['All', ...new Set(allTopics)];
+    }, [activePosts]);
 
     // Flatten all posts for global search (including sub-posts)
     const allSearchablePosts = useMemo(() => {
@@ -74,14 +129,19 @@ const Posts = () => {
         }
 
         if (selectedTopic !== 'All') {
-            results = results.filter(post => post.topic === selectedTopic);
+            results = results.filter(post => {
+                if (Array.isArray(post.topic)) {
+                    return post.topic.includes(selectedTopic);
+                }
+                return post.topic === selectedTopic;
+            });
         }
 
         return results;
     }, [query, fuse, selectedTopic, activePosts]);
 
     const handlePostClick = (post) => {
-        if (post.type === 'collection') {
+        if (post.type === 'collection' || post.subPosts) {
             navigate(`/posts/${post.id}`);
             window.scrollTo(0, 0);
         } else {

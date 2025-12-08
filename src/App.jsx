@@ -5,6 +5,9 @@ import Posts from './pages/Posts';
 import Store from './pages/Store';
 import CategoryDetails from './pages/CategoryDetails';
 
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import Disclosure from './pages/Disclosure';
+
 import ScrollToTop from './components/ScrollToTop';
 
 function App() {
@@ -18,6 +21,8 @@ function App() {
           <Route path="/posts/:collectionId" element={<Posts />} />
           <Route path="/store" element={<Store />} />
           <Route path="/store/:categoryId" element={<CategoryDetails />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/disclosure" element={<Disclosure />} />
         </Routes>
       </Layout>
     </Router>
