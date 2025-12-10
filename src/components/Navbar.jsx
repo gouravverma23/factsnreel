@@ -37,7 +37,7 @@ const Navbar = () => {
             </div>
 
             {/* Mobile Menu Overlay */}
-            <div className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'}`}>
+            <div className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'}`}>
                 <div className="flex flex-col space-y-4 px-4 py-6 bg-dark-surface border-t border-dark-border">
                     <Link to="/" onClick={() => setIsOpen(false)} className="hover:text-dark-accent transition-colors duration-300">Home</Link>
                     <Link to="/posts" onClick={() => setIsOpen(false)} className="hover:text-dark-accent transition-colors duration-300">Posts</Link>

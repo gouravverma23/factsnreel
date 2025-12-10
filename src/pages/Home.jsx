@@ -9,6 +9,7 @@ import CategoryCard from '../components/CategoryCard';
 import ContactSection from '../components/ContactSection';
 import useScrollAnimation from '../hooks/useScrollAnimation';
 import PostModal from '../components/PostModal';
+import { getRandomPostId } from '../utils/randomPost';
 
 const Home = () => {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -49,11 +50,7 @@ const Home = () => {
     };
 
     const closeModal = () => {
-        if (location.state?.modal) {
-            navigate(-1);
-        } else {
-            setSearchParams({});
-        }
+        setSearchParams({}, { replace: true });
     };
 
     const handlePostClick = (post) => {
@@ -83,12 +80,23 @@ const Home = () => {
                         FactsnReel
                     </h1>
                     <p className="text-lg md:text-xl lg:text-2xl text-dark-muted mb-12 max-w-2xl mx-auto animate-slide-up" style={{ animationDelay: '0.1s' }}>
-                        Unveiling the unknown. Curating the exceptional.
+                        Where curiosity wins over distraction.
                     </p>
-                    <div className="animate-slide-up" style={{ animationDelay: '0.2s' }}>
+                    <div className="animate-slide-up flex flex-col md:flex-row gap-4 justify-center items-center" style={{ animationDelay: '0.2s' }}>
                         <Link to="/posts" state={{ fromExploreNow: true }} className={buttonClass}>
                             Explore Now <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
                         </Link>
+                        <button
+                            onClick={() => {
+                                const randomId = getRandomPostId();
+                                if (randomId) {
+                                    setSearchParams({ postId: randomId }, { state: { modal: true } });
+                                }
+                            }}
+                            className="inline-flex items-center gap-2 px-10 py-4 bg-transparent border-2 border-white text-white font-bold rounded-full hover:bg-white hover:text-dark-bg hover:shadow-neon transition-all duration-300 group shadow-lg"
+                        >
+                            Random <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                        </button>
                     </div>
                 </div>
             </section>
@@ -163,7 +171,12 @@ const Home = () => {
 
             {/* Post Modal */}
             {selectedPost && (
-                <PostModal post={selectedPost} onClose={closeModal} />
+                <PostModal post={selectedPost} onClose={closeModal} onNextRandom={() => {
+                    const randomId = getRandomPostId(selectedPost.id);
+                    if (randomId) {
+                        setSearchParams({ postId: randomId }, { state: { modal: true } });
+                    }
+                }} />
             )}
         </div>
     );

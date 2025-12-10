@@ -64,7 +64,7 @@ export const posts = [
         "title": "The Psychology of Color in Marketing",
         "image": "https://i.pinimg.com/736x/45/50/21/455021cc2284ae47ce29c3fe3872e754.jpg",
         "description": "How brands use color to influence your decisions. A deep dive into color theory and consumer behavior.",
-        "topic": "Marketing",
+        "topic": ["Marketing","Psychology"],
         "subtopics": [
             "Consumer Behavior",
             "Branding"
@@ -135,7 +135,7 @@ export const posts = [
         "title": "Top 5 Productivity Hacks for 2024",
         "image": "https://i.pinimg.com/1200x/22/84/46/2284467637eb258a1e79efd137a78d3a.jpg",
         "description": "Boost your efficiency with these simple yet effective techniques used by top performers.",
-        "topic": "Self Improvement",
+        "topic": ["Self Improvement","Learning"],
         "subtopics": [
             "Time Management",
             "Focus"
@@ -411,7 +411,7 @@ export const posts = [
         title: "How to Learn Anything Faster",
         image: "https://i.pinimg.com/736x/c6/de/95/c6de95d83a92f98e0095b9fa81d7c889.jpg",
         description: "Smart, science-backed ways to learn faster, remember longer, and understand deeper.",
-        topic: "Learning",
+        topic: ["Learning","Self Improvement"],
         subtopics: ["Brain Science", "Self-Improvement"],
 
         content: [
@@ -599,7 +599,7 @@ export const posts = [
         title: "The World of Cryptocurrency",
         image: "https://i.pinimg.com/1200x/81/78/4e/81784e304f80f3f9801d17335717ea13.jpg",
         description: "Dive into the revolution of digital money. A collection of insights on Bitcoin, Ethereum, and the future of finance.",
-        topic: "Finance",
+        topic: ["Finance","Technology"],
         subtopics: ["Crypto", "Blockchain", "Investing"],
         subPosts: [
             {
@@ -1081,7 +1081,7 @@ export const posts = [
         title: "The Art of Storytelling: Why We Need Stories",
         image: "https://i.pinimg.com/736x/f2/3b/29/f23b299899b03a30718de7160d29d180.jpg",
         description: "Stories are more than just entertainment; they are **fundamental to human connection**. Learn how to craft compelling narratives that captivate your audience.",
-        topic: "Culture",
+        topic: "Self Improvement",
         subtopics: ["Communication", "History", "Writing"],
         content: [
             {
@@ -1128,7 +1128,7 @@ export const posts = [
         title: "Minimalism: How Less Can Actually Be More",
         image: "https://images.unsplash.com/photo-1505691938895-1758d7feb511?q=80&w=1000&auto=format&fit=crop",
         description: "Discover the power of minimalism and how simplifying your life can boost happiness, productivity, and focus.",
-        topic: ["Lifestyle","Self-Improvement"],
+        topic: "Self Improvement",
         subtopics: ["Minimalism", "Productivity", "Mindset"],
         content: [
             {

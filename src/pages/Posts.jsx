@@ -5,6 +5,7 @@ import Fuse from 'fuse.js';
 import { posts } from '../data/posts';
 import PostCard from '../components/PostCard';
 import PostModal from '../components/PostModal';
+import { getRandomPostId } from '../utils/randomPost';
 
 const Posts = () => {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -47,7 +48,7 @@ const Posts = () => {
         } else {
             setSelectedPost(null);
         }
-    }, [searchParams]);
+    }, [searchParams, collectionId]);
 
     const openModal = (post) => {
         setSearchParams({ ...Object.fromEntries(searchParams), postId: post.id }, { state: { modal: true } });
@@ -149,7 +150,43 @@ const Posts = () => {
         }
     };
 
-    // Removed auto-scroll effect as per user request
+    const handleNextRandom = () => {
+        if (selectedPost) {
+            const randomId = getRandomPostId(selectedPost.id);
+            if (randomId) {
+                setSearchParams(
+                    { ...Object.fromEntries(searchParams), postId: randomId },
+                    { replace: true, state: { modal: true } }
+                );
+            }
+        }
+    };
+
+    const handleNextPost = () => {
+        if (selectedPost && activeCollection) {
+            const currentIndex = activeCollection.subPosts.findIndex(p => p.id === selectedPost.id);
+            if (currentIndex !== -1 && currentIndex < activeCollection.subPosts.length - 1) {
+                const nextPost = activeCollection.subPosts[currentIndex + 1];
+                setSearchParams(
+                    { ...Object.fromEntries(searchParams), postId: nextPost.id },
+                    { replace: true, state: { modal: true } }
+                );
+            }
+        }
+    };
+
+    const handlePrevPost = () => {
+        if (selectedPost && activeCollection) {
+            const currentIndex = activeCollection.subPosts.findIndex(p => p.id === selectedPost.id);
+            if (currentIndex > 0) {
+                const prevPost = activeCollection.subPosts[currentIndex - 1];
+                setSearchParams(
+                    { ...Object.fromEntries(searchParams), postId: prevPost.id },
+                    { replace: true, state: { modal: true } }
+                );
+            }
+        }
+    };
 
     return (
         <div className="container mx-auto px-4 py-12 min-h-screen">
@@ -183,7 +220,22 @@ const Posts = () => {
                     {topics.map(topic => (
                         <button
                             key={topic}
-                            onClick={() => setSelectedTopic(topic)}
+                            onClick={() => {
+                                const newParams = new URLSearchParams(searchParams);
+                                const currentTopic = searchParams.get('topic');
+                                const isCurrentlyAll = !currentTopic || currentTopic === 'All';
+
+                                if (topic === 'All') {
+                                    newParams.delete('topic');
+                                } else {
+                                    newParams.set('topic', topic);
+                                }
+
+                                // Ideally, we want to be able to go "Back" to "All" view.
+                                // So if we are currently at "All", we PUSH (don't replace).
+                                // But if we are already filtering (Topic A), switching to Topic B should REPLACE (to avoid history chain).
+                                setSearchParams(newParams, { replace: !isCurrentlyAll });
+                            }}
                             className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${selectedTopic === topic
                                 ? 'bg-dark-accent text-white shadow-neon'
                                 : 'bg-dark-surface border border-dark-border text-dark-muted hover:border-dark-accent hover:text-white'
@@ -210,7 +262,15 @@ const Posts = () => {
             </div>
 
             {selectedPost && (
-                <PostModal post={selectedPost} onClose={closeModal} />
+                <PostModal
+                    post={selectedPost}
+                    onClose={closeModal}
+                    onNextRandom={!activeCollection ? handleNextRandom : undefined}
+                    onNextPost={activeCollection ? handleNextPost : undefined}
+                    onPrevPost={activeCollection ? handlePrevPost : undefined}
+                    hasNext={activeCollection && selectedPost ? activeCollection.subPosts.findIndex(p => p.id === selectedPost.id) < activeCollection.subPosts.length - 1 : false}
+                    hasPrev={activeCollection && selectedPost ? activeCollection.subPosts.findIndex(p => p.id === selectedPost.id) > 0 : false}
+                />
             )}
         </div>
     );
