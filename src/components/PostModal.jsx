@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
-import { X, ExternalLink, Shuffle, ArrowLeft, ArrowRight } from 'lucide-react';
+import { X, ExternalLink, ArrowLeft, ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
-const PostModal = ({ post, onClose, onNextRandom, onNextPost, onPrevPost }) => {
+const PostModal = ({ post, onClose, onNextPost, onPrevPost }) => {
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -106,14 +106,6 @@ const PostModal = ({ post, onClose, onNextRandom, onNextPost, onPrevPost }) => {
                                 )}
                             </div>
 
-                            {onNextRandom && (
-                                <button
-                                    onClick={onNextRandom}
-                                    className="self-end md:self-auto flex items-center gap-1.5 px-4 py-2 bg-gradient-to-r from-purple-600 to-blue-600 text-white text-xs font-bold rounded-full hover:shadow-neon hover:scale-105 transition-all duration-300 group whitespace-nowrap md:ml-4 shadow-lg"
-                                >
-                                    Next Random <Shuffle size={14} className="group-hover:rotate-180 transition-transform duration-500" />
-                                </button>
-                            )}
                         </div>
 
                         <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 leading-tight">{post.title}</h2>
@@ -210,15 +202,7 @@ const PostModal = ({ post, onClose, onNextRandom, onNextPost, onPrevPost }) => {
 
                         {/* Footer Actions - Inside Scroll */}
                         <div className="pt-6 border-t border-dark-border flex flex-col gap-4">
-                            {onNextRandom && (
-                                <button
-                                    onClick={onNextRandom}
-                                    className="w-full py-5 bg-gradient-to-r from-purple-600 to-blue-600 text-white text-lg font-black rounded-2xl shadow-lg hover:shadow-neon hover:scale-[1.01] transition-all duration-300 flex items-center justify-center gap-3 group animate-pulse-slow"
-                                >
-                                    <Shuffle size={24} className="group-hover:rotate-180 transition-transform duration-500" />
-                                    NEXT RANDOM
-                                </button>
-                            )}
+
 
                             {(onNextPost || onPrevPost) && (
                                 <div className="grid grid-cols-2 gap-4">
