@@ -2,13 +2,14 @@ import { useState, useEffect, useRef, useMemo } from 'react';
 import { useLocation, useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import { Search } from 'lucide-react';
 import Fuse from 'fuse.js';
-import { posts } from '../data/posts';
 import PostCard from '../components/PostCard';
 import PostModal from '../components/PostModal';
-import { getRandomPostId } from '../utils/randomPost';
-
+import PostCardSkeleton from '../components/PostCardSkeleton';
 const Posts = () => {
     const [searchParams, setSearchParams] = useSearchParams();
+    const [posts, setPosts] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
     const [selectedPost, setSelectedPost] = useState(null);
     const [query, setQuery] = useState('');
     const [selectedTopic, setSelectedTopic] = useState('All');
@@ -17,6 +18,26 @@ const Posts = () => {
     const location = useLocation();
 
     useEffect(() => {
+        const fetchPosts = async () => {
+            try {
+                const response = await fetch('http://localhost:5000/api/posts');
+                if (!response.ok) throw new Error('Failed to fetch posts');
+                const data = await response.json();
+                setPosts(data);
+            } catch (err) {
+                console.error('Error fetching posts:', err);
+                setError('Failed to load posts. Please verify the backend is running.');
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchPosts();
+    }, []);
+
+    useEffect(() => {
+        if (loading || posts.length === 0) return;
+
         const postId = searchParams.get('postId');
         const topicParam = searchParams.get('topic');
 
@@ -48,7 +69,7 @@ const Posts = () => {
         } else {
             setSelectedPost(null);
         }
-    }, [searchParams, collectionId]);
+    }, [searchParams, collectionId, loading, posts]);
 
     const openModal = (post) => {
         setSearchParams({ ...Object.fromEntries(searchParams), postId: post.id }, { state: { modal: true } });
@@ -70,11 +91,11 @@ const Posts = () => {
             return posts.find(p => p.id === parseInt(collectionId));
         }
         return null;
-    }, [collectionId]);
+    }, [collectionId, posts]);
 
     const activePosts = useMemo(() => {
-        return activeCollection ? activeCollection.subPosts : posts;
-    }, [activeCollection]);
+        return (activeCollection && activeCollection.subPosts) ? activeCollection.subPosts : posts;
+    }, [activeCollection, posts]);
 
     // Extract unique topics from active posts
     const topics = useMemo(() => {
@@ -97,7 +118,7 @@ const Posts = () => {
             }
         });
         return flattened;
-    }, []);
+    }, [posts]);
 
     // Fuse.js configuration
     // If inside a collection, search only that collection.
@@ -150,17 +171,7 @@ const Posts = () => {
         }
     };
 
-    const handleNextRandom = () => {
-        if (selectedPost) {
-            const randomId = getRandomPostId(selectedPost.id);
-            if (randomId) {
-                setSearchParams(
-                    { ...Object.fromEntries(searchParams), postId: randomId },
-                    { replace: true, state: { modal: true } }
-                );
-            }
-        }
-    };
+
 
     const handleNextPost = () => {
         if (selectedPost && activeCollection) {
@@ -248,7 +259,21 @@ const Posts = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {searchResults.length > 0 ? (
+                {loading ? (
+                    Array(6).fill(0).map((_, i) => (
+                        <PostCardSkeleton key={i} />
+                    ))
+                ) : error ? (
+                    <div className="col-span-full text-center py-20 bg-dark-surface border border-dark-border rounded-2xl p-8">
+                        <p className="text-red-400 mb-4">{error}</p>
+                        <button
+                            onClick={() => window.location.reload()}
+                            className="px-6 py-2 bg-dark-accent text-white rounded-full font-bold hover:shadow-neon transition-all"
+                        >
+                            Try Again
+                        </button>
+                    </div>
+                ) : searchResults.length > 0 ? (
                     searchResults.map((post, index) => (
                         <div key={post.id}>
                             <PostCard post={post} onClick={handlePostClick} />
@@ -265,7 +290,6 @@ const Posts = () => {
                 <PostModal
                     post={selectedPost}
                     onClose={closeModal}
-                    onNextRandom={!activeCollection ? handleNextRandom : undefined}
                     onNextPost={activeCollection ? handleNextPost : undefined}
                     onPrevPost={activeCollection ? handlePrevPost : undefined}
                     hasNext={activeCollection && selectedPost ? activeCollection.subPosts.findIndex(p => p.id === selectedPost.id) < activeCollection.subPosts.length - 1 : false}
