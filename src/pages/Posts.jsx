@@ -5,6 +5,7 @@ import Fuse from 'fuse.js';
 import PostCard from '../components/PostCard';
 import PostModal from '../components/PostModal';
 import PostCardSkeleton from '../components/PostCardSkeleton';
+import { posts as staticPosts } from '../data/posts';
 const Posts = () => {
     const [searchParams, setSearchParams] = useSearchParams();
     const [posts, setPosts] = useState([]);
@@ -18,21 +19,8 @@ const Posts = () => {
     const location = useLocation();
 
     useEffect(() => {
-        const fetchPosts = async () => {
-            try {
-                const response = await fetch('http://localhost:5000/api/posts');
-                if (!response.ok) throw new Error('Failed to fetch posts');
-                const data = await response.json();
-                setPosts(data);
-            } catch (err) {
-                console.error('Error fetching posts:', err);
-                setError('Failed to load posts. Please verify the backend is running.');
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchPosts();
+        setPosts(staticPosts);
+        setLoading(false);
     }, []);
 
     useEffect(() => {
