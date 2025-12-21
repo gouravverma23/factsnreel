@@ -10,11 +10,6 @@ import PrivacyPolicy from './pages/PrivacyPolicy';
 import Disclosure from './pages/Disclosure';
 
 import ScrollToTop from './components/ScrollToTop';
-import AdminLogin from './pages/AdminLogin';
-import AdminDashboard from './pages/AdminDashboard';
-import AdminLayout from './components/AdminLayout';
-import ManagePosts from './pages/ManagePosts';
-import ManageFacts from './pages/ManageFacts';
 
 function App() {
   return (
@@ -30,12 +25,6 @@ function App() {
         <Route path="/store/:categoryId" element={<Layout><CategoryDetails /></Layout>} />
         <Route path="/privacy-policy" element={<Layout><PrivacyPolicy /></Layout>} />
         <Route path="/disclosure" element={<Layout><Disclosure /></Layout>} />
-
-        {/* Admin Routes */}
-        <Route path="/admin/login" element={<AdminLogin />} />
-        <Route path="/admin" element={<AdminLayout><AdminDashboard /></AdminLayout>} />
-        <Route path="/admin/posts" element={<AdminLayout><ManagePosts /></AdminLayout>} />
-        <Route path="/admin/facts" element={<AdminLayout><ManageFacts /></AdminLayout>} />
       </Routes>
     </Router>
   );
