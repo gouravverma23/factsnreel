@@ -9,6 +9,7 @@ export const facts = [
             "Spin up to 600 times per second.",
             "Have the strongest magnetic fields in the universe."
         ],
+        "listName": "",
         "reference": "https://www.nationalgeographic.com/science/article/neutron-stars",
         "credit": "National Geographic",
         "readMoreLink": "/posts?postId=1",
