@@ -43,7 +43,11 @@ const FactCard = ({ fact }) => {
 
                     {fact.list && fact.list.length > 0 && (
                         <div className="bg-dark-bg/50 rounded-xl p-6 border border-dark-border/50 my-6">
-                            <h4 className="text-sm font-bold text-dark-muted uppercase tracking-wider mb-4">Key Points</h4>
+                            {fact.listName !== "" && (
+                                <h4 className="text-sm font-bold text-dark-muted uppercase tracking-wider mb-4">
+                                    {fact.listName || 'Key Points'}
+                                </h4>
+                            )}
                             <ul className="space-y-3">
                                 {fact.list.map((item, index) => (
                                     <li key={index} className="flex items-start gap-3">
