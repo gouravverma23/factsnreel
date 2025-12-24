@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import { Sparkles } from 'lucide-react';
 import FactCard from '../components/FactCard';
 import FactCardSkeleton from '../components/FactCardSkeleton';
-import { facts as staticFacts } from '../data/facts';
 
 const QuickFacts = () => {
     const [shuffledFacts, setShuffledFacts] = useState([]);
@@ -11,9 +10,22 @@ const QuickFacts = () => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        const shuffled = [...staticFacts].sort(() => Math.random() - 0.5);
-        setShuffledFacts(shuffled);
-        setLoading(false);
+        const fetchFacts = async () => {
+            try {
+                const response = await fetch('http://localhost:5000/api/facts');
+                if (!response.ok) throw new Error('Failed to fetch');
+                const data = await response.json();
+                const shuffled = [...data].sort(() => Math.random() - 0.5);
+                setShuffledFacts(shuffled);
+            } catch (err) {
+                console.error('Error fetching facts:', err);
+                setError('Unable to load facts. Please check if the backend is running.');
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchFacts();
     }, []);
 
     const containerVariants = {
