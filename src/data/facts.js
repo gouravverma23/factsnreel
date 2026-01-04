@@ -17,7 +17,7 @@ export const facts = [
     },
     {
         "id": 2,
-        "image": "https://images.unsplash.com/photo-1542435503-91490216b801?q=80&w=1080",
+        "image": "https://i.pinimg.com/1200x/20/f6/17/20f6174d4671c16256571b3e22785c97.jpg",
         "fact": "The color red makes you hungry.",
         "description": "This is why many fast-food chains like McDonald's, KFC, and Burger King use red in their logos.",
         "list": [
@@ -47,7 +47,7 @@ export const facts = [
     },
     {
         "id": 4,
-        "image": "https://images.unsplash.com/photo-1518546305927-5a555bb7020d?q=80&w=1080",
+        "image": "https://i.pinimg.com/1200x/21/80/3c/21803c88524b2e1164d2091f1f36cb43.jpg",
         "fact": "There are more possible iterations of a game of chess than there are atoms in the known universe.",
         "description": "This is known as the Shannon Number, estimated at 10^120.",
         "list": [
@@ -61,7 +61,7 @@ export const facts = [
     },
     {
         "id": 5,
-        "image": "https://images.unsplash.com/photo-1535591273668-578e31182c4f?q=80&w=1080",
+        "image": "https://i.pinimg.com/1200x/7f/fd/df/7ffddfcb87dfd751c24aa919ec9bb59c.jpg",
         "fact": "Octopuses have three hearts.",
         "description": "Two pump blood to the gills, while a larger central heart circulates blood to the rest of the body.",
         "list": [
@@ -75,7 +75,7 @@ export const facts = [
     },
     {
         "id": 6,
-        "image": "https://images.unsplash.com/photo-1596854703633-e03dae722513?q=80&w=1080",
+        "image": "https://i.pinimg.com/1200x/61/19/5f/61195f0e9da6eb8f3ee43a611f6ac5bc.jpg",
         "fact": "Honey never spoils.",
         "description": "Archaeologists have found pots of honey in ancient Egyptian tombs that are over 3,000 years old and still edible.",
         "list": [
@@ -89,7 +89,7 @@ export const facts = [
     },
     {
         "id": 7,
-        "image": "https://images.unsplash.com/photo-1541963463532-d68292c34b19?q=80&w=1080",
+        "image": "https://i.pinimg.com/1200x/d0/38/8b/d0388b1bc1a899dc954b2616cdd69ba8.jpg",
         "fact": "Wombat poop is cube-shaped.",
         "description": "This unique shape prevents the feces from rolling away, allowing wombats to mark their territory effectively.",
         "list": [
@@ -117,7 +117,7 @@ export const facts = [
     },
     {
         "id": 9,
-        "image": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=1080",
+        "image": "https://i.pinimg.com/1200x/f2/9b/78/f29b7869b3cacfaa0eb3067f9bfbbb90.jpg",
         "fact": "The Eiffel Tower can be 15 cm taller in summer.",
         "description": "When a substance is heated up, its particles move more and it takes up a larger volume. This is known as thermal expansion.",
         "list": [
@@ -131,7 +131,7 @@ export const facts = [
     },
     {
         "id": 10,
-        "image": "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?q=80&w=1080",
+        "image": "https://i.pinimg.com/736x/77/bf/63/77bf63ad9485be79d29233deab68d032.jpg",
         "fact": "Sloths can hold their breath longer than dolphins.",
         "description": "By slowing their heart rates, sloths can hold their breath for up to 40 minutes. Dolphins need to come up for air after about 10 minutes.",
         "list": [
@@ -141,6 +141,48 @@ export const facts = [
         ],
         "reference": "https://www.worldwildlife.org/stories/why-are-sloths-slow-and-six-other-sloth-facts",
         "credit": "World Wildlife Fund",
+        "readMoreLink": null
+    },
+    {
+        "id": 11,
+        "image": "https://image2url.com/r2/default/images/1767518211594-aa730e99-ff75-4906-977e-1b15b032bc22.jpg",
+        "fact": "Human bones are wet, not dry.",
+        "description": "Living human bones contain about 25% water along with collagen and minerals. Dry bones seen in museums have lost this water content and are no longer living tissue.",
+        "list": [
+            "Bones contain water, collagen, and minerals.",
+            "Water provides flexibility and shock absorption.",
+            "Dry bones are brittle and lifeless."
+        ],
+        "reference": "https://pmc.ncbi.nlm.nih.gov/articles/PMC1440753/",
+        "credit": "National Center for Biotechnology Information",
+        "readMoreLink": null
+    },
+    {
+        "id": 12,
+        "image": "https://image2url.com/r2/default/images/1767518257987-2ecc0c60-3ba6-4ea3-b57b-d080b7d48cb0.jpg",
+        "fact": "The human brain deletes memories on purpose.",
+        "description": "The brain actively removes unused or irrelevant information to stay efficient. Forgetting helps prevent overload and improves decision-making.",
+        "list": [
+            "Forgetting is an active brain process.",
+            "Helps optimize learning and focus.",
+            "Linked to neural pruning."
+        ],
+        "reference": "https://www.sciencedaily.com/releases/2017/06/170621132910.htm",
+        "credit": "Scientific American",
+        "readMoreLink": null
+    },
+    {
+        "id": 13,
+        "image": "https://image2url.com/r2/default/images/1767517909742-a74593ad-4f9f-40d6-97cf-30a0e34cc640.jpg",
+        "fact": "Every human has a unique breathing fingerprint.",
+        "description": "Breathing patterns differ from person to person and can be used as a biometric identifier, similar to fingerprints or voice recognition.",
+        "list": [
+            "Breathing rhythm is unique per individual.",
+            "Can identify people with high accuracy.",
+            "Used in emerging biometric research."
+        ],
+        "reference": "https://pubmed.ncbi.nlm.nih.gov/40513571/",
+        "credit": "Nature Journal",
         "readMoreLink": null
     }
 ];
