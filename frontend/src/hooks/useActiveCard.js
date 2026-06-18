@@ -8,6 +8,7 @@ const useActiveCard = (threshold = 0.6) => {
         // Only run on devices that don't support hover (touch devices)
         const isTouchDevice = window.matchMedia('(hover: none)').matches;
         if (!isTouchDevice) return;
+        const element = ref.current;
 
         const observer = new IntersectionObserver(
             ([entry]) => {
@@ -19,13 +20,13 @@ const useActiveCard = (threshold = 0.6) => {
             }
         );
 
-        if (ref.current) {
-            observer.observe(ref.current);
+        if (element) {
+            observer.observe(element);
         }
 
         return () => {
-            if (ref.current) {
-                observer.unobserve(ref.current);
+            if (element) {
+                observer.unobserve(element);
             }
         };
     }, [threshold]);

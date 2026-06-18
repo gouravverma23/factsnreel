@@ -1,10 +1,14 @@
-import { useState, useEffect, useRef, useMemo } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useLocation, useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import { Search } from 'lucide-react';
 import Fuse from 'fuse.js';
 import PostCard from '../components/PostCard';
 import PostModal from '../components/PostModal';
 import PostCardSkeleton from '../components/PostCardSkeleton';
+import { getPosts } from '../lib/api';
+
+const hasSubPosts = (post) => Array.isArray(post?.subPosts) && post.subPosts.length > 0;
+
 const Posts = () => {
     const [searchParams, setSearchParams] = useSearchParams();
     const [posts, setPosts] = useState([]);
@@ -20,9 +24,7 @@ const Posts = () => {
     useEffect(() => {
         const fetchPosts = async () => {
             try {
-                const response = await fetch('http://localhost:5000/api/posts');
-                if (!response.ok) throw new Error('Failed to fetch posts');
-                const data = await response.json();
+                const data = await getPosts();
                 setPosts(data);
             } catch (err) {
                 console.error('Error fetching posts:', err);
@@ -56,8 +58,8 @@ const Posts = () => {
             // Check subposts if not found
             if (!foundPost) {
                 for (const post of posts) {
-                    if (post.subPosts) {
-                        const subPost = post.subPosts.find(sp => sp.id === postId || sp.id === parseInt(postId));
+                    if (hasSubPosts(post)) {
+                        const subPost = post.subPosts.find(sp => String(sp.id) === String(postId));
                         if (subPost) {
                             foundPost = subPost;
                             break;
@@ -88,13 +90,13 @@ const Posts = () => {
     // Determine which posts to show (all posts or collection sub-posts)
     const activeCollection = useMemo(() => {
         if (collectionId) {
-            return posts.find(p => p.id === parseInt(collectionId));
+            return posts.find(p => String(p.id) === String(collectionId));
         }
         return null;
     }, [collectionId, posts]);
 
     const activePosts = useMemo(() => {
-        return (activeCollection && activeCollection.subPosts) ? activeCollection.subPosts : posts;
+        return (activeCollection && hasSubPosts(activeCollection)) ? activeCollection.subPosts : posts;
     }, [activeCollection, posts]);
 
     // Extract unique topics from active posts
@@ -113,7 +115,7 @@ const Posts = () => {
         const flattened = [];
         posts.forEach(post => {
             flattened.push(post);
-            if (post.subPosts) {
+            if (hasSubPosts(post)) {
                 flattened.push(...post.subPosts);
             }
         });
@@ -124,7 +126,7 @@ const Posts = () => {
     // If inside a collection, search only that collection.
     // If global (no collection), search ALL posts (including sub-posts).
     const searchSource = useMemo(() => {
-        return activeCollection ? activeCollection.subPosts : allSearchablePosts;
+        return activeCollection && hasSubPosts(activeCollection) ? activeCollection.subPosts : allSearchablePosts;
     }, [activeCollection, allSearchablePosts]);
 
     const fuse = useMemo(() => new Fuse(searchSource, {
@@ -160,10 +162,10 @@ const Posts = () => {
         }
 
         return results;
-    }, [query, fuse, selectedTopic, activePosts]);
+    }, [query, fuse, selectedTopic, activePosts, activeCollection]);
 
     const handlePostClick = (post) => {
-        if (post.type === 'collection' || post.subPosts) {
+        if (post.type === 'collection' || hasSubPosts(post)) {
             navigate(`/posts/${post.id}`);
             window.scrollTo(0, 0);
         } else {
@@ -274,7 +276,7 @@ const Posts = () => {
                         </button>
                     </div>
                 ) : searchResults.length > 0 ? (
-                    searchResults.map((post, index) => (
+                    searchResults.map((post) => (
                         <div key={post.id}>
                             <PostCard post={post} onClick={handlePostClick} />
                         </div>

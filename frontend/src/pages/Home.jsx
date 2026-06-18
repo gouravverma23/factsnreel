@@ -1,20 +1,42 @@
-import { useState, useEffect } from 'react';
-import { Link, useNavigate, useSearchParams, useLocation } from 'react-router-dom';
+import { useState, useEffect, useMemo } from 'react';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
-import { posts } from '../data/posts';
 import { categories } from '../data/store';
 import { aboutData } from '../data/about';
 import PostCard from '../components/PostCard';
+import PostCardSkeleton from '../components/PostCardSkeleton';
 import CategoryCard from '../components/CategoryCard';
 import ContactSection from '../components/ContactSection';
 import useScrollAnimation from '../hooks/useScrollAnimation';
 import PostModal from '../components/PostModal';
+import { getPosts } from '../lib/api';
+
+const hasSubPosts = (post) => Array.isArray(post?.subPosts) && post.subPosts.length > 0;
 
 const Home = () => {
     const [searchParams, setSearchParams] = useSearchParams();
+    const [posts, setPosts] = useState([]);
+    const [loadingPosts, setLoadingPosts] = useState(true);
+    const [postsError, setPostsError] = useState(null);
     const [selectedPost, setSelectedPost] = useState(null);
     const navigate = useNavigate();
-    const recentPosts = [...posts].reverse().slice(0, 3);
+    const recentPosts = useMemo(() => [...posts].reverse().slice(0, 3), [posts]);
+
+    useEffect(() => {
+        const fetchPosts = async () => {
+            try {
+                const data = await getPosts();
+                setPosts(data);
+            } catch (error) {
+                console.error('Error fetching posts:', error);
+                setPostsError('Unable to load latest posts right now.');
+            } finally {
+                setLoadingPosts(false);
+            }
+        };
+
+        fetchPosts();
+    }, []);
 
     useEffect(() => {
         const postId = searchParams.get('postId');
@@ -25,8 +47,8 @@ const Home = () => {
             // Check subposts if not found
             if (!foundPost) {
                 for (const post of posts) {
-                    if (post.subPosts) {
-                        const subPost = post.subPosts.find(sp => sp.id === postId || sp.id === parseInt(postId));
+                    if (hasSubPosts(post)) {
+                        const subPost = post.subPosts.find(sp => String(sp.id) === String(postId));
                         if (subPost) {
                             foundPost = subPost;
                             break;
@@ -38,11 +60,7 @@ const Home = () => {
         } else {
             setSelectedPost(null);
         }
-    }, [searchParams]);
-
-    const location = useLocation();
-
-    // ... (existing helper functions if any, but we are inside component)
+    }, [posts, searchParams]);
 
     const openModal = (post) => {
         setSearchParams({ postId: post.id }, { state: { modal: true } });
@@ -53,7 +71,7 @@ const Home = () => {
     };
 
     const handlePostClick = (post) => {
-        if (post.type === 'collection' || post.subPosts) {
+        if (post.type === 'collection' || hasSubPosts(post)) {
             navigate(`/posts/${post.id}`);
             window.scrollTo(0, 0);
         } else {
@@ -123,7 +141,15 @@ const Home = () => {
                     </Link>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {recentPosts.map(post => (
+                    {loadingPosts ? (
+                        Array(3).fill(0).map((_, index) => (
+                            <PostCardSkeleton key={index} />
+                        ))
+                    ) : postsError ? (
+                        <div className="col-span-full rounded-2xl border border-dark-border bg-dark-surface p-8 text-center text-dark-muted">
+                            {postsError}
+                        </div>
+                    ) : recentPosts.map(post => (
                         <PostCard key={post.id} post={post} onClick={handlePostClick} />
                     ))}
                 </div>

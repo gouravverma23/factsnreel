@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { X, Save, Image as ImageIcon, Link as LinkIcon, Info } from 'lucide-react';
+import { createFact, updateFact } from '../lib/api';
 
 const FactForm = ({ fact, onClose, onSuccess }) => {
     const [formData, setFormData] = useState({
@@ -10,6 +11,7 @@ const FactForm = ({ fact, onClose, onSuccess }) => {
         reference: '',
         readMoreLink: '',
         buttonText: '',
+        listName: '',
         list: ['', '', '']
     });
     const [loading, setLoading] = useState(false);
@@ -18,6 +20,8 @@ const FactForm = ({ fact, onClose, onSuccess }) => {
         if (fact) {
             setFormData({
                 ...fact,
+                listName: fact.listName || '',
+                buttonText: fact.buttonText || '',
                 list: fact.list || ['', '', '']
             });
         }
@@ -27,30 +31,21 @@ const FactForm = ({ fact, onClose, onSuccess }) => {
         e.preventDefault();
         setLoading(true);
 
-        const method = fact ? 'PUT' : 'POST';
-        const url = fact ? `http://localhost:5000/api/facts/${fact.id}` : 'http://localhost:5000/api/facts';
-
         try {
-            const res = await fetch(url, {
-                method,
-                headers: {
-                    'Content-Type': 'application/json',
-                    'x-admin-password': localStorage.getItem('adminPassword')
-                },
-                body: JSON.stringify({
-                    ...formData,
-                    list: formData.list.filter(item => item.trim() !== '')
-                })
-            });
+            const payload = {
+                ...formData,
+                list: formData.list.filter(item => item.trim() !== '')
+            };
 
-            if (res.ok) {
-                onSuccess();
+            if (fact) {
+                await updateFact(fact.id, payload);
+                onSuccess('Fact updated successfully.');
             } else {
-                const data = await res.json();
-                alert(data.error || 'Operation failed');
+                await createFact(payload);
+                onSuccess('Fact published successfully.');
             }
         } catch (err) {
-            alert('Network error');
+            alert(err.message || 'Network error');
         } finally {
             setLoading(false);
         }
@@ -60,6 +55,10 @@ const FactForm = ({ fact, onClose, onSuccess }) => {
         const newList = [...formData.list];
         newList[index] = value;
         setFormData({ ...formData, list: newList });
+    };
+
+    const addListItem = () => {
+        setFormData({ ...formData, list: [...formData.list, ''] });
     };
 
     return (
@@ -132,7 +131,23 @@ const FactForm = ({ fact, onClose, onSuccess }) => {
 
                     {/* Key Points */}
                     <div className="bg-dark-bg/50 p-6 rounded-xl border border-dark-border">
-                        <span className="text-dark-muted text-sm font-bold uppercase tracking-wider mb-4 block">Key Points (Brief)</span>
+                        <div className="flex items-center justify-between mb-4">
+                            <span className="text-dark-muted text-sm font-bold uppercase tracking-wider block">Key Points (Brief)</span>
+                            <button
+                                type="button"
+                                onClick={addListItem}
+                                className="text-xs font-bold text-dark-accent"
+                            >
+                                + Add Point
+                            </button>
+                        </div>
+                        <input
+                            type="text"
+                            value={formData.listName}
+                            onChange={(e) => setFormData({ ...formData, listName: e.target.value })}
+                            className="w-full px-4 py-2 mb-3 bg-dark-bg border border-dark-border rounded-lg text-sm text-white focus:outline-none focus:border-dark-accent"
+                            placeholder="Optional section title, e.g. Key Insights"
+                        />
                         <div className="space-y-3">
                             {formData.list.map((item, index) => (
                                 <input
@@ -173,6 +188,17 @@ const FactForm = ({ fact, onClose, onSuccess }) => {
                             />
                         </label>
                     </div>
+
+                    <label>
+                        <span className="text-dark-muted text-sm font-medium mb-1 block">Read More Button Text</span>
+                        <input
+                            type="text"
+                            value={formData.buttonText}
+                            onChange={(e) => setFormData({ ...formData, buttonText: e.target.value })}
+                            className="w-full px-4 py-3 bg-dark-bg border border-dark-border rounded-xl text-white focus:outline-none focus:border-dark-accent transition-all"
+                            placeholder="Read Full Detailed Post"
+                        />
+                    </label>
                 </form>
 
                 <div className="p-6 border-t border-dark-border">
@@ -182,7 +208,7 @@ const FactForm = ({ fact, onClose, onSuccess }) => {
                         className="w-full py-4 bg-dark-accent text-white font-bold rounded-xl hover:shadow-neon transition-all flex items-center justify-center gap-2 disabled:opacity-50"
                     >
                         <Save size={20} />
-                        {loading ? 'Saving...' : 'Save Fact'}
+                        {loading ? 'Saving...' : fact ? 'Update Fact' : 'Save Fact'}
                     </button>
                 </div>
             </div>

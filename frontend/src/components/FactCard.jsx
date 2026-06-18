@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import * as FramerMotion from 'framer-motion';
 import { ArrowRight, Quote, ExternalLink } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
@@ -6,7 +6,7 @@ const FactCard = ({ fact }) => {
     const navigate = useNavigate();
 
     return (
-        <motion.div
+        <FramerMotion.motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
@@ -90,7 +90,7 @@ const FactCard = ({ fact }) => {
                     )}
                 </div>
             </div>
-        </motion.div>
+        </FramerMotion.motion.div>
     );
 };
 
